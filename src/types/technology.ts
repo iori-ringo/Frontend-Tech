@@ -1,10 +1,21 @@
-/** 学習トピック */
+/** コードサンプル */
+export type CodeExample = {
+  html: string;
+  /** CSSトピック用（HTMLと組み合わせてプレビュー） */
+  css?: string;
+};
+
+/** 学習トピック（HTML要素/CSSプロパティ単位） */
 export type Topic = {
   id: string;
+  /** タグ名/プロパティ名 (例: "<h1> 〜 <h6>") */
   title: string;
+  /** 短い日本語名 (例: "見出しタグ") */
+  subtitle: string;
+  /** 説明文 */
   description: string;
-  /** 想定学習時間（分） */
-  estimatedMinutes: number;
+  /** コード例 + プレビュー用 */
+  code: CodeExample;
   tags: string[];
 };
 

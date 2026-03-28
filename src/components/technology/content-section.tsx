@@ -1,5 +1,5 @@
 import type { ContentSection as ContentSectionType } from "@/types/technology";
-import { TopicCard } from "./topic-card";
+import { ElementCard } from "./element-card";
 
 type ContentSectionProps = {
   section: ContentSectionType;
@@ -7,16 +7,16 @@ type ContentSectionProps = {
 
 export function ContentSection({ section }: ContentSectionProps) {
   return (
-    <section className="mb-phi-lg last:mb-0">
-      <h3 className="text-[length:var(--font-size-title3)] font-semibold leading-[var(--leading-phi-half)] text-foreground">
+    <section className="mb-phi-xl last:mb-0">
+      <h2 className="text-[length:var(--font-size-title2)] font-semibold leading-[var(--leading-phi-half)] text-foreground">
         {section.title}
-      </h3>
+      </h2>
       <p className="mt-phi-3xs text-[length:var(--font-size-subheading)] leading-[var(--leading-phi)] text-muted-foreground">
         {section.description}
       </p>
-      <div className="mt-phi-sm flex flex-col gap-phi-sm">
+      <div className="mt-phi-md flex flex-col gap-phi-lg">
         {section.topics.map((topic) => (
-          <TopicCard key={topic.id} topic={topic} />
+          <ElementCard key={topic.id} topic={topic} />
         ))}
       </div>
     </section>
