@@ -1497,4 +1497,370 @@ export const technologies: Technology[] = [
       },
     ],
   },
+  {
+    slug: "nextjs",
+    name: "Next.js",
+    description: "Reactベースのフルスタックフレームワーク",
+    longDescription:
+      "Next.js は Vercel が開発したReactフレームワークです。App Routerによるファイルベースルーティング、Server Components、SSR/SSG、API Routes等を提供し、Reactアプリの本番運用に必要な機能が揃っています。",
+    icon: "Globe",
+    color: "oklch(0.35 0.02 0)",
+    officialUrl: "https://nextjs.org",
+    levels: [
+      {
+        level: "beginner",
+        label: "初級",
+        description: "Next.jsの基本概念、ルーティング、ページ作成を学びます。",
+        sections: [
+          {
+            id: "next-b-routing",
+            title: "App Router / ルーティング",
+            description: "ファイルベースのルーティングシステム",
+            topics: [
+              {
+                id: "next-file-routing",
+                title: "page.tsx / layout.tsx",
+                subtitle: "ファイルベースルーティング",
+                description: "app/ディレクトリ内のフォルダ構造がそのままURLパスになる。page.tsxがページ本体、layout.tsxが共通レイアウト。layout.tsxは子ページ切替時に再レンダリングされない。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// フォルダ構造 → URL</span><br>\napp/<br>\n├── page.tsx           <span style="color:#a6e3a1;">→ /</span><br>\n├── layout.tsx         <span style="color:#6c7086;">← 共通レイアウト</span><br>\n├── about/<br>\n│   └── page.tsx       <span style="color:#a6e3a1;">→ /about</span><br>\n├── blog/<br>\n│   ├── page.tsx       <span style="color:#a6e3a1;">→ /blog</span><br>\n│   └── [slug]/<br>\n│       └── page.tsx   <span style="color:#a6e3a1;">→ /blog/hello-world</span><br>\n└── not-found.tsx      <span style="color:#6c7086;">← 404ページ</span>\n</div>',
+                },
+                tags: ["page.tsx", "layout.tsx", "App Router", "ファイルベース"],
+              },
+              {
+                id: "next-dynamic-routes",
+                title: "[slug] / [...slug]",
+                subtitle: "動的ルーティング",
+                description: "[slug]フォルダで動的パラメータを受け取る。paramsはPromiseとしてasync/awaitで取得（Next.js 15+）。[...slug]で複数セグメント対応。generateStaticParamsで静的生成も可能。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// app/blog/[slug]/page.tsx</span><br>\n<span style="color:#cba6f7;">type</span> Props = {<br>\n  params: Promise&lt;{ slug: <span style="color:#a6e3a1;">string</span> }&gt;;<br>\n};<br><br>\n<span style="color:#cba6f7;">export default async function</span> <span style="color:#89b4fa;">BlogPost</span>(<br>\n  { params }: Props<br>\n) {<br>\n  <span style="color:#cba6f7;">const</span> { slug } = <span style="color:#cba6f7;">await</span> params;<br>\n  <span style="color:#cba6f7;">return</span> &lt;<span style="color:#89b4fa;">h1</span>&gt;{slug}&lt;/<span style="color:#89b4fa;">h1</span>&gt;;<br>\n}<br><br>\n<span style="color:#6c7086;">// 静的生成</span><br>\n<span style="color:#cba6f7;">export async function</span> <span style="color:#89b4fa;">generateStaticParams</span>() {<br>\n  <span style="color:#cba6f7;">return</span> [<br>\n    { slug: <span style="color:#a6e3a1;">"hello"</span> },<br>\n    { slug: <span style="color:#a6e3a1;">"world"</span> },<br>\n  ];<br>\n}\n</div>',
+                },
+                tags: ["[slug]", "params", "generateStaticParams", "動的ルート"],
+              },
+              {
+                id: "next-loading-error",
+                title: "loading.tsx / error.tsx / not-found.tsx",
+                subtitle: "特殊ファイル",
+                description: "loading.tsx: ページ読み込み中のスケルトンUI（Suspenseを自動ラップ）。error.tsx: エラー発生時のフォールバック（\"use client\"必須）。not-found.tsx: 404ページ。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// loading.tsx — 自動でSuspenseラップ</span><br>\n<span style="color:#cba6f7;">export default function</span> <span style="color:#89b4fa;">Loading</span>() {<br>\n  <span style="color:#cba6f7;">return</span> &lt;<span style="color:#89b4fa;">div</span>&gt;読み込み中...&lt;/<span style="color:#89b4fa;">div</span>&gt;;<br>\n}<br><br>\n<span style="color:#6c7086;">// error.tsx — "use client" 必須</span><br>\n<span style="color:#a6e3a1;">"use client"</span>;<br>\n<span style="color:#cba6f7;">export default function</span> <span style="color:#89b4fa;">Error</span>(<br>\n  { error, reset }: { error: Error; reset: () =&gt; void }<br>\n) {<br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;<span style="color:#89b4fa;">div</span>&gt;<br>\n      &lt;<span style="color:#89b4fa;">h2</span>&gt;エラー: {error.message}&lt;/<span style="color:#89b4fa;">h2</span>&gt;<br>\n      &lt;<span style="color:#89b4fa;">button</span> onClick={reset}&gt;再試行&lt;/<span style="color:#89b4fa;">button</span>&gt;<br>\n    &lt;/<span style="color:#89b4fa;">div</span>&gt;<br>\n  );<br>\n}\n</div>',
+                },
+                tags: ["loading.tsx", "error.tsx", "not-found.tsx", "Suspense"],
+              },
+            ],
+          },
+          {
+            id: "next-b-components",
+            title: "コンポーネント・ナビゲーション",
+            description: "Next.js固有のコンポーネント",
+            topics: [
+              {
+                id: "next-link",
+                title: "<Link>",
+                subtitle: "クライアントサイドナビゲーション",
+                description: "Next.jsのLinkコンポーネントは<a>タグの代わりに使い、ページ遷移時にフルリロードせずクライアントサイドで遷移する。自動プリフェッチでリンク先を事前読み込み。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> Link <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"next/link"</span>;<br><br>\n<span style="color:#6c7086;">// 基本</span><br>\n&lt;<span style="color:#a6e3a1;">Link</span> href=<span style="color:#a6e3a1;">"/about"</span>&gt;About&lt;/<span style="color:#a6e3a1;">Link</span>&gt;<br><br>\n<span style="color:#6c7086;">// 動的ルート</span><br>\n&lt;<span style="color:#a6e3a1;">Link</span> href={`/blog/${post.slug}`}&gt;<br>\n  {post.title}<br>\n&lt;/<span style="color:#a6e3a1;">Link</span>&gt;<br><br>\n<span style="color:#f38ba8;">// NG: &lt;a href="/about"&gt; は使わない</span><br>\n<span style="color:#6c7086;">// → フルリロードが発生してしまう</span>\n</div>',
+                },
+                tags: ["Link", "next/link", "プリフェッチ", "ナビゲーション"],
+              },
+              {
+                id: "next-image",
+                title: "<Image>",
+                subtitle: "画像最適化",
+                description: "Next.jsのImageコンポーネントは画像を自動最適化（WebP変換、リサイズ、遅延読み込み）。width/heightまたはfillが必須。外部画像はnext.config.tsのremotePatternsで許可が必要。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> Image <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"next/image"</span>;<br><br>\n<span style="color:#6c7086;">// サイズ指定</span><br>\n&lt;<span style="color:#a6e3a1;">Image</span><br>\n  src=<span style="color:#a6e3a1;">"/logo.png"</span><br>\n  alt=<span style="color:#a6e3a1;">"ロゴ"</span><br>\n  width={200}<br>\n  height={100}<br>\n  priority  <span style="color:#6c7086;">← LCP画像に付ける</span><br>\n/&gt;<br><br>\n<span style="color:#6c7086;">// fill: 親要素に合わせる</span><br>\n&lt;<span style="color:#89b4fa;">div</span> className=<span style="color:#a6e3a1;">"relative h-64"</span>&gt;<br>\n  &lt;<span style="color:#a6e3a1;">Image</span><br>\n    src=<span style="color:#a6e3a1;">"/hero.jpg"</span><br>\n    alt=<span style="color:#a6e3a1;">"ヒーロー"</span><br>\n    fill<br>\n    className=<span style="color:#a6e3a1;">"object-cover"</span><br>\n  /&gt;<br>\n&lt;/<span style="color:#89b4fa;">div</span>&gt;\n</div>',
+                },
+                tags: ["Image", "next/image", "画像最適化", "priority", "fill"],
+              },
+              {
+                id: "next-metadata",
+                title: "Metadata API",
+                subtitle: "SEO・メタデータ",
+                description: "exportでmetadataオブジェクトを定義、またはgenerateMetadata関数で動的に生成。title, description, openGraph等を型安全に設定。layout.tsxで共通設定、page.tsxで上書き。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import type</span> { Metadata } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"next"</span>;<br><br>\n<span style="color:#6c7086;">// 静的メタデータ</span><br>\n<span style="color:#cba6f7;">export const</span> metadata: Metadata = {<br>\n  title: <span style="color:#a6e3a1;">"サイト名"</span>,<br>\n  description: <span style="color:#a6e3a1;">"サイトの説明"</span>,<br>\n};<br><br>\n<span style="color:#6c7086;">// 動的メタデータ</span><br>\n<span style="color:#cba6f7;">export async function</span> <span style="color:#89b4fa;">generateMetadata</span>(<br>\n  { params }: Props<br>\n): Promise&lt;Metadata&gt; {<br>\n  <span style="color:#cba6f7;">const</span> { slug } = <span style="color:#cba6f7;">await</span> params;<br>\n  <span style="color:#cba6f7;">return</span> {<br>\n    title: `${slug} — サイト名`,<br>\n  };<br>\n}\n</div>',
+                },
+                tags: ["Metadata", "generateMetadata", "title", "SEO"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "intermediate",
+        label: "中級",
+        description: "データ取得、Server Actions、ミドルウェアを学びます。",
+        sections: [
+          {
+            id: "next-i-data",
+            title: "データ取得",
+            description: "サーバーサイドでのデータ取得戦略",
+            topics: [
+              {
+                id: "next-server-fetch",
+                title: "Server Component での fetch",
+                subtitle: "サーバーサイドデータ取得",
+                description: "Server Componentではasync/awaitで直接データを取得できる。fetchのcacheオプションでキャッシュ戦略を制御。revalidateで再検証間隔を指定（ISR）。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// Server Component（デフォルト）</span><br>\n<span style="color:#cba6f7;">async function</span> <span style="color:#89b4fa;">PostList</span>() {<br>\n  <span style="color:#cba6f7;">const</span> res = <span style="color:#cba6f7;">await</span> fetch(<br>\n    <span style="color:#a6e3a1;">"https://api.example.com/posts"</span>,<br>\n    { next: { revalidate: 3600 } }<br>\n    <span style="color:#6c7086;">↑ 1時間ごとに再検証（ISR）</span><br>\n  );<br>\n  <span style="color:#cba6f7;">const</span> posts = <span style="color:#cba6f7;">await</span> res.json();<br><br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;<span style="color:#89b4fa;">ul</span>&gt;<br>\n      {posts.map((p) =&gt; (<br>\n        &lt;<span style="color:#89b4fa;">li</span> key={p.id}&gt;{p.title}&lt;/<span style="color:#89b4fa;">li</span>&gt;<br>\n      ))}<br>\n    &lt;/<span style="color:#89b4fa;">ul</span>&gt;<br>\n  );<br>\n}\n</div>',
+                },
+                tags: ["fetch", "revalidate", "ISR", "Server Component"],
+              },
+              {
+                id: "next-server-actions",
+                title: "Server Actions",
+                subtitle: "サーバーサイド関数",
+                description: "\"use server\"で宣言した関数はサーバーでのみ実行される。フォーム送信やデータ変更に使用。API Routeを書かずにサーバー処理を実行可能。revalidatePathでキャッシュを更新。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// Server Action</span><br>\n<span style="color:#a6e3a1;">"use server"</span>;<br><br>\n<span style="color:#cba6f7;">export async function</span> <span style="color:#89b4fa;">createPost</span>(<br>\n  formData: FormData<br>\n) {<br>\n  <span style="color:#cba6f7;">const</span> title = formData.get(<span style="color:#a6e3a1;">"title"</span>);<br>\n  <span style="color:#cba6f7;">await</span> db.post.create({ data: { title } });<br>\n  revalidatePath(<span style="color:#a6e3a1;">"/posts"</span>);<br>\n}<br><br>\n<span style="color:#6c7086;">// フォームから直接呼び出し</span><br>\n&lt;<span style="color:#89b4fa;">form</span> action={createPost}&gt;<br>\n  &lt;<span style="color:#89b4fa;">input</span> name=<span style="color:#a6e3a1;">"title"</span> /&gt;<br>\n  &lt;<span style="color:#89b4fa;">button</span> type=<span style="color:#a6e3a1;">"submit"</span>&gt;投稿&lt;/<span style="color:#89b4fa;">button</span>&gt;<br>\n&lt;/<span style="color:#89b4fa;">form</span>&gt;\n</div>',
+                },
+                tags: ["use server", "Server Actions", "formData", "revalidatePath"],
+              },
+              {
+                id: "next-middleware",
+                title: "middleware.ts",
+                subtitle: "ミドルウェア",
+                description: "リクエストがページに到達する前に実行される処理。認証チェック、リダイレクト、ヘッダー追加等に使用。プロジェクトルートにmiddleware.tsを配置。matcherで対象パスを制限。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// middleware.ts（プロジェクトルート）</span><br>\n<span style="color:#cba6f7;">import</span> { NextResponse } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"next/server"</span>;<br>\n<span style="color:#cba6f7;">import type</span> { NextRequest } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"next/server"</span>;<br><br>\n<span style="color:#cba6f7;">export function</span> <span style="color:#89b4fa;">middleware</span>(req: NextRequest) {<br>\n  <span style="color:#cba6f7;">const</span> token = req.cookies.get(<span style="color:#a6e3a1;">"token"</span>);<br><br>\n  <span style="color:#cba6f7;">if</span> (!token) {<br>\n    <span style="color:#cba6f7;">return</span> NextResponse.redirect(<br>\n      <span style="color:#cba6f7;">new</span> URL(<span style="color:#a6e3a1;">"/login"</span>, req.url)<br>\n    );<br>\n  }<br>\n}<br><br>\n<span style="color:#cba6f7;">export const</span> config = {<br>\n  matcher: [<span style="color:#a6e3a1;">"/dashboard/:path*"</span>],<br>\n};\n</div>',
+                },
+                tags: ["middleware", "NextResponse", "matcher", "認証"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "advanced",
+        label: "上級",
+        description: "キャッシュ戦略、並列ルート、パフォーマンス最適化を学びます。",
+        sections: [
+          {
+            id: "next-a-cache",
+            title: "キャッシュ・レンダリング戦略",
+            description: "Next.jsのキャッシュレイヤーとレンダリング方式",
+            topics: [
+              {
+                id: "next-rendering",
+                title: "SSG / SSR / ISR / PPR",
+                subtitle: "レンダリング戦略",
+                description: "SSG: ビルド時に生成（最速）。SSR: リクエスト毎に生成。ISR: 一定間隔で再生成。PPR (Partial Prerendering): ページの静的部分と動的部分を分離してストリーミング。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// SSG（デフォルト: 動的な要素がなければ）</span><br>\n<span style="color:#cba6f7;">export default function</span> <span style="color:#89b4fa;">About</span>() {<br>\n  <span style="color:#cba6f7;">return</span> &lt;<span style="color:#89b4fa;">h1</span>&gt;About&lt;/<span style="color:#89b4fa;">h1</span>&gt;;<br>\n}<br><br>\n<span style="color:#6c7086;">// SSR（動的レンダリング強制）</span><br>\n<span style="color:#cba6f7;">export const</span> dynamic = <span style="color:#a6e3a1;">"force-dynamic"</span>;<br><br>\n<span style="color:#6c7086;">// ISR（再検証間隔を指定）</span><br>\n<span style="color:#cba6f7;">export const</span> revalidate = 3600; <span style="color:#6c7086;">// 1時間</span><br><br>\n<span style="color:#6c7086;">// PPR（実験的機能）</span><br>\n<span style="color:#6c7086;">// next.config.ts で experimental.ppr を有効化</span><br>\n<span style="color:#6c7086;">// 静的シェル + Suspenseで動的部分をストリーミング</span>\n</div>',
+                },
+                tags: ["SSG", "SSR", "ISR", "PPR", "revalidate"],
+              },
+              {
+                id: "next-parallel-routes",
+                title: "@folder / 並列ルート",
+                subtitle: "並列・インターセプトルート",
+                description: "@で始まるフォルダ名で並列ルート（同じページに複数の独立したコンテンツを同時表示）。(.)で始まるフォルダでインターセプトルート（モーダル表示等）。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// 並列ルート</span><br>\napp/<br>\n├── layout.tsx<br>\n├── @dashboard/   <span style="color:#a6e3a1;">← 並列ルートA</span><br>\n│   └── page.tsx<br>\n├── @analytics/   <span style="color:#a6e3a1;">← 並列ルートB</span><br>\n│   └── page.tsx<br>\n└── page.tsx<br><br>\n<span style="color:#6c7086;">// layout.tsx で両方を表示</span><br>\n<span style="color:#cba6f7;">export default function</span> <span style="color:#89b4fa;">Layout</span>({<br>\n  children,<br>\n  dashboard,<br>\n  analytics,<br>\n}: {<br>\n  children: React.ReactNode;<br>\n  dashboard: React.ReactNode;<br>\n  analytics: React.ReactNode;<br>\n}) {<br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;&gt;<br>\n      {children}<br>\n      {dashboard}<br>\n      {analytics}<br>\n    &lt;/&gt;<br>\n  );<br>\n}\n</div>',
+                },
+                tags: ["@folder", "並列ルート", "インターセプト", "モーダル"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "frontend-basics",
+    name: "フロントエンド基礎知識",
+    description: "Web開発で必要な基礎概念と仕組み",
+    longDescription:
+      "フロントエンド開発に必要な、ブラウザの仕組み、ネットワーク、開発ツール、パッケージ管理、Git等の基礎知識を体系的に学びます。コードを書く前に理解しておくべき土台です。",
+    icon: "BookOpen",
+    color: "oklch(0.50 0.10 60)",
+    officialUrl: "https://developer.mozilla.org/ja/docs/Learn",
+    levels: [
+      {
+        level: "beginner",
+        label: "初級",
+        description: "Webの仕組みと開発ツールの基本を学びます。",
+        sections: [
+          {
+            id: "fe-b-web",
+            title: "Webの仕組み",
+            description: "ブラウザとサーバーの基本",
+            topics: [
+              {
+                id: "fe-http",
+                title: "HTTP / HTTPS",
+                subtitle: "通信プロトコル",
+                description: "ブラウザがサーバーにリクエストを送り、レスポンスを受け取る仕組み。HTTPメソッド: GET（取得）、POST（作成）、PUT（更新）、DELETE（削除）。HTTPSはSSL/TLSで通信を暗号化したもの。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">リクエスト（ブラウザ → サーバー）</span><br>\nGET /api/users HTTP/1.1<br>\nHost: example.com<br>\nAccept: application/json<br><br>\n<span style="color:#a6e3a1;">レスポンス（サーバー → ブラウザ）</span><br>\nHTTP/1.1 200 OK<br>\nContent-Type: application/json<br><br>\n[{ "id": 1, "name": "太郎" }]<br><br>\n<span style="color:#6c7086;">ステータスコード:</span><br>\n200 OK          <span style="color:#a6e3a1;">成功</span><br>\n301 Redirect    <span style="color:#f9e2af;">リダイレクト</span><br>\n404 Not Found   <span style="color:#f38ba8;">見つからない</span><br>\n500 Server Error <span style="color:#f38ba8;">サーバーエラー</span>\n</div>',
+                },
+                tags: ["HTTP", "HTTPS", "GET", "POST", "ステータスコード"],
+              },
+              {
+                id: "fe-dom",
+                title: "DOM (Document Object Model)",
+                subtitle: "HTML→ツリー構造",
+                description: "ブラウザがHTMLを解析して作る木構造のオブジェクト。JavaScriptはDOMを操作して画面を動的に変更する。ReactはこのDOM操作を仮想DOM経由で効率化している。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">HTML:</span><br>\n&lt;body&gt;<br>\n  &lt;h1&gt;タイトル&lt;/h1&gt;<br>\n  &lt;p&gt;段落&lt;/p&gt;<br>\n&lt;/body&gt;<br><br>\n<span style="color:#a6e3a1;">DOM ツリー:</span><br>\ndocument<br>\n└── html<br>\n    ├── head<br>\n    └── body<br>\n        ├── h1 → "タイトル"<br>\n        └── p  → "段落"<br><br>\n<span style="color:#6c7086;">JavaScript でDOM操作:</span><br>\ndocument.querySelector(<span style="color:#a6e3a1;">"h1"</span>)<br>\n  .textContent = <span style="color:#a6e3a1;">"新タイトル"</span>;<br><br>\n<span style="color:#6c7086;">React: 仮想DOMで差分だけ更新</span>\n</div>',
+                },
+                tags: ["DOM", "ツリー構造", "querySelector", "仮想DOM"],
+              },
+              {
+                id: "fe-devtools",
+                title: "ブラウザ開発者ツール",
+                subtitle: "DevTools",
+                description: "F12またはCmd+Option+Iで開く。要素パネル（HTML/CSS確認）、コンソール（JSログ・エラー）、ネットワーク（通信監視）、パフォーマンス（速度計測）が主要機能。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">主要パネル:</span><br><br>\n<span style="color:#a6e3a1;">Elements</span>（要素）<br>\n  HTMLの確認・編集、CSSの確認・変更<br>\n  ボックスモデルの視覚化<br><br>\n<span style="color:#a6e3a1;">Console</span>（コンソール）<br>\n  console.log() の出力確認<br>\n  エラーメッセージの確認<br>\n  JavaScriptの実行<br><br>\n<span style="color:#a6e3a1;">Network</span>（ネットワーク）<br>\n  APIリクエスト/レスポンスの確認<br>\n  読み込み時間の計測<br><br>\n<span style="color:#a6e3a1;">Application</span>（アプリケーション）<br>\n  Cookie, LocalStorage の確認<br><br>\n<span style="color:#f9e2af;">開き方: F12 / Cmd+Option+I</span>\n</div>',
+                },
+                tags: ["DevTools", "Elements", "Console", "Network", "F12"],
+              },
+            ],
+          },
+          {
+            id: "fe-b-tools",
+            title: "開発ツール",
+            description: "パッケージ管理とビルドツール",
+            topics: [
+              {
+                id: "fe-npm",
+                title: "npm / package.json",
+                subtitle: "パッケージ管理",
+                description: "npmはNode.jsのパッケージ管理ツール。package.jsonにプロジェクトの依存パッケージとスクリプトを定義。npm installで依存をインストール、npm run devで開発サーバー起動。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// package.json</span><br>\n{<br>\n  "name": <span style="color:#a6e3a1;">"my-app"</span>,<br>\n  "scripts": {<br>\n    "dev": <span style="color:#a6e3a1;">"next dev"</span>,<br>\n    "build": <span style="color:#a6e3a1;">"next build"</span>,<br>\n    "lint": <span style="color:#a6e3a1;">"eslint ."</span><br>\n  },<br>\n  "dependencies": {<br>\n    "next": <span style="color:#a6e3a1;">"^16.0.0"</span>,<br>\n    "react": <span style="color:#a6e3a1;">"^19.0.0"</span><br>\n  },<br>\n  "devDependencies": {<br>\n    "typescript": <span style="color:#a6e3a1;">"^5.0.0"</span><br>\n  }<br>\n}<br><br>\n<span style="color:#f9e2af;">$ npm install</span>     <span style="color:#6c7086;">依存インストール</span><br>\n<span style="color:#f9e2af;">$ npm run dev</span>     <span style="color:#6c7086;">開発サーバー</span><br>\n<span style="color:#f9e2af;">$ npm run build</span>   <span style="color:#6c7086;">本番ビルド</span>\n</div>',
+                },
+                tags: ["npm", "package.json", "dependencies", "scripts"],
+              },
+              {
+                id: "fe-git-basics",
+                title: "Git 基礎",
+                subtitle: "バージョン管理",
+                description: "ファイルの変更履歴を管理するツール。add（ステージング）→ commit（記録）→ push（リモートに送信）の流れ。ブランチで並行作業、Pull Requestでレビュー。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#f9e2af;">$ git init</span>              <span style="color:#6c7086;">リポジトリ初期化</span><br>\n<span style="color:#f9e2af;">$ git add .</span>             <span style="color:#6c7086;">全ファイルをステージ</span><br>\n<span style="color:#f9e2af;">$ git commit -m "feat: 初期実装"</span><br>\n<span style="color:#f9e2af;">$ git push origin main</span>  <span style="color:#6c7086;">リモートに送信</span><br><br>\n<span style="color:#89b4fa;">ブランチ:</span><br>\n<span style="color:#f9e2af;">$ git checkout -b feature/login</span><br>\n<span style="color:#6c7086;">→ 作業 → commit → push</span><br>\n<span style="color:#6c7086;">→ Pull Request でレビュー</span><br>\n<span style="color:#6c7086;">→ merge で main に統合</span><br><br>\n<span style="color:#89b4fa;">よく使うコマンド:</span><br>\n<span style="color:#f9e2af;">git status</span>   <span style="color:#6c7086;">変更確認</span><br>\n<span style="color:#f9e2af;">git diff</span>     <span style="color:#6c7086;">差分表示</span><br>\n<span style="color:#f9e2af;">git log</span>      <span style="color:#6c7086;">履歴確認</span><br>\n<span style="color:#f9e2af;">git pull</span>     <span style="color:#6c7086;">リモートの変更取得</span>\n</div>',
+                },
+                tags: ["git", "commit", "push", "branch", "Pull Request"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "intermediate",
+        label: "中級",
+        description: "TypeScript、API連携、環境変数を学びます。",
+        sections: [
+          {
+            id: "fe-i-typescript",
+            title: "TypeScript 基礎",
+            description: "型安全なJavaScript",
+            topics: [
+              {
+                id: "fe-ts-types",
+                title: "基本型 / type / interface",
+                subtitle: "型定義",
+                description: "string, number, boolean, null, undefinedが基本型。typeで型エイリアス、interfaceでオブジェクト型を定義。?で省略可能、|でユニオン型。TypeScriptはビルド時に型チェックし、実行時にはJavaScriptになる。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// 基本型</span><br>\n<span style="color:#cba6f7;">const</span> name: <span style="color:#a6e3a1;">string</span> = <span style="color:#a6e3a1;">"太郎"</span>;<br>\n<span style="color:#cba6f7;">const</span> age: <span style="color:#a6e3a1;">number</span> = 25;<br>\n<span style="color:#cba6f7;">const</span> active: <span style="color:#a6e3a1;">boolean</span> = <span style="color:#fab387;">true</span>;<br><br>\n<span style="color:#6c7086;">// type（型エイリアス）</span><br>\n<span style="color:#cba6f7;">type</span> <span style="color:#89b4fa;">Status</span> = <span style="color:#a6e3a1;">"active"</span> | <span style="color:#a6e3a1;">"inactive"</span>;<br><br>\n<span style="color:#6c7086;">// type（オブジェクト型）</span><br>\n<span style="color:#cba6f7;">type</span> <span style="color:#89b4fa;">User</span> = {<br>\n  id: <span style="color:#a6e3a1;">number</span>;<br>\n  name: <span style="color:#a6e3a1;">string</span>;<br>\n  email?: <span style="color:#a6e3a1;">string</span>;  <span style="color:#6c7086;">← ? = 省略可能</span><br>\n  status: Status;<br>\n};<br><br>\n<span style="color:#6c7086;">// 配列型</span><br>\n<span style="color:#cba6f7;">const</span> items: <span style="color:#a6e3a1;">string</span>[] = [<span style="color:#a6e3a1;">"a"</span>, <span style="color:#a6e3a1;">"b"</span>];\n</div>',
+                },
+                tags: ["string", "number", "type", "interface", "ユニオン型"],
+              },
+              {
+                id: "fe-ts-generics",
+                title: "Generics / Utility Types",
+                subtitle: "汎用的な型",
+                description: "Generics(<T>)で型をパラメータ化し、再利用可能な型定義を作る。Utility Types: Partial<T>（全プロパティ省略可能）、Pick<T, K>（一部抽出）、Omit<T, K>（一部除外）、Record<K, V>。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// Generics</span><br>\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">first</span>&lt;T&gt;(arr: T[]): T | <span style="color:#fab387;">undefined</span> {<br>\n  <span style="color:#cba6f7;">return</span> arr[0];<br>\n}<br>\nfirst([1, 2, 3]);      <span style="color:#6c7086;">→ number</span><br>\nfirst([<span style="color:#a6e3a1;">"a"</span>, <span style="color:#a6e3a1;">"b"</span>]);    <span style="color:#6c7086;">→ string</span><br><br>\n<span style="color:#6c7086;">// Utility Types</span><br>\n<span style="color:#cba6f7;">type</span> User = { id: number; name: string; email: string };<br><br>\nPartial&lt;User&gt;      <span style="color:#6c7086;">→ 全て省略可能</span><br>\nPick&lt;User, <span style="color:#a6e3a1;">"id"</span> | <span style="color:#a6e3a1;">"name"</span>&gt;  <span style="color:#6c7086;">→ id, nameだけ</span><br>\nOmit&lt;User, <span style="color:#a6e3a1;">"email"</span>&gt;      <span style="color:#6c7086;">→ email以外</span><br>\nRecord&lt;string, number&gt; <span style="color:#6c7086;">→ {[k: string]: number}</span>\n</div>',
+                },
+                tags: ["Generics", "Partial", "Pick", "Omit", "Record"],
+              },
+            ],
+          },
+          {
+            id: "fe-i-api",
+            title: "API連携・環境変数",
+            description: "外部サービスとの連携と設定管理",
+            topics: [
+              {
+                id: "fe-fetch-api",
+                title: "fetch / async/await",
+                subtitle: "API通信",
+                description: "fetch()でHTTPリクエストを送信し、レスポンスを受け取る。async/awaitで非同期処理を同期的に書ける。エラーハンドリングはtry/catchで行う。res.ok でステータスチェック。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">async function</span> <span style="color:#89b4fa;">getUsers</span>() {<br>\n  <span style="color:#cba6f7;">try</span> {<br>\n    <span style="color:#cba6f7;">const</span> res = <span style="color:#cba6f7;">await</span> fetch(<span style="color:#a6e3a1;">"/api/users"</span>);<br><br>\n    <span style="color:#cba6f7;">if</span> (!res.ok) {<br>\n      <span style="color:#cba6f7;">throw new</span> Error(`HTTP ${res.status}`);<br>\n    }<br><br>\n    <span style="color:#cba6f7;">const</span> data = <span style="color:#cba6f7;">await</span> res.json();<br>\n    <span style="color:#cba6f7;">return</span> data;<br>\n  } <span style="color:#cba6f7;">catch</span> (error) {<br>\n    console.error(<span style="color:#a6e3a1;">"通信エラー:"</span>, error);<br>\n  }<br>\n}<br><br>\n<span style="color:#6c7086;">// POST リクエスト</span><br>\n<span style="color:#cba6f7;">await</span> fetch(<span style="color:#a6e3a1;">"/api/users"</span>, {<br>\n  method: <span style="color:#a6e3a1;">"POST"</span>,<br>\n  headers: { <span style="color:#a6e3a1;">"Content-Type"</span>: <span style="color:#a6e3a1;">"application/json"</span> },<br>\n  body: JSON.stringify({ name: <span style="color:#a6e3a1;">"太郎"</span> }),<br>\n});\n</div>',
+                },
+                tags: ["fetch", "async/await", "try/catch", "JSON", "API"],
+              },
+              {
+                id: "fe-env",
+                title: ".env / 環境変数",
+                subtitle: "環境設定",
+                description: ".envファイルでAPIキーやURL等の設定値を管理。Next.jsではNEXT_PUBLIC_接頭辞でクライアントに公開。秘密の値（APIキー等）はサーバーのみで使用。.envはGitにコミットしない（.gitignoreに追加）。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// .env.local</span><br>\nDATABASE_URL=<span style="color:#a6e3a1;">"postgresql://..."</span><br>\nAPI_SECRET=<span style="color:#a6e3a1;">"sk_..."</span>  <span style="color:#f38ba8;">← サーバーのみ</span><br>\nNEXT_PUBLIC_API_URL=<span style="color:#a6e3a1;">"https://api.example.com"</span><br>\n  <span style="color:#a6e3a1;">↑ NEXT_PUBLIC_ = クライアントでも使える</span><br><br>\n<span style="color:#6c7086;">// 使用（Server Component）</span><br>\n<span style="color:#cba6f7;">const</span> url = process.env.DATABASE_URL;<br><br>\n<span style="color:#6c7086;">// 使用（Client Component）</span><br>\n<span style="color:#cba6f7;">const</span> apiUrl = process.env.NEXT_PUBLIC_API_URL;<br><br>\n<span style="color:#f38ba8;">// .gitignore に必ず追加:</span><br>\n.env<br>\n.env.local<br>\n.env.*.local\n</div>',
+                },
+                tags: [".env", "NEXT_PUBLIC_", "環境変数", "APIキー", ".gitignore"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "advanced",
+        label: "上級",
+        description: "パフォーマンス、セキュリティ、デプロイを学びます。",
+        sections: [
+          {
+            id: "fe-a-performance",
+            title: "パフォーマンス",
+            description: "Core Web Vitalsと最適化",
+            topics: [
+              {
+                id: "fe-core-web-vitals",
+                title: "LCP / INP / CLS",
+                subtitle: "Core Web Vitals",
+                description: "Googleの検索ランキングに影響する指標。LCP (Largest Contentful Paint): 最大コンテンツの表示速度、2.5秒以内が目標。INP (Interaction to Next Paint): 操作への応答速度、200ms以内。CLS (Cumulative Layout Shift): レイアウトのずれ、0.1以下。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">Core Web Vitals:</span><br><br>\n<span style="color:#a6e3a1;">LCP</span> (Largest Contentful Paint)<br>\n  目標: ≤ 2.5秒<br>\n  改善: 画像最適化, フォント最適化,<br>\n       priority属性, preload<br><br>\n<span style="color:#a6e3a1;">INP</span> (Interaction to Next Paint)<br>\n  目標: ≤ 200ms<br>\n  改善: 重い処理の分割, Web Worker,<br>\n       useDeferredValue, useTransition<br><br>\n<span style="color:#a6e3a1;">CLS</span> (Cumulative Layout Shift)<br>\n  目標: ≤ 0.1<br>\n  改善: 画像にwidth/height指定,<br>\n       フォントのsize-adjust,<br>\n       動的コンテンツにスペース確保<br><br>\n<span style="color:#f9e2af;">計測: Lighthouse, PageSpeed Insights</span>\n</div>',
+                },
+                tags: ["LCP", "INP", "CLS", "Core Web Vitals", "Lighthouse"],
+              },
+              {
+                id: "fe-security",
+                title: "XSS / CSRF / CSP",
+                subtitle: "Webセキュリティ基礎",
+                description: "XSS: 悪意あるスクリプト注入。対策: ユーザー入力のエスケープ、dangerouslySetInnerHTMLを避ける。CSRF: なりすましリクエスト。対策: トークン検証。CSP: 実行可能なスクリプトを制限するHTTPヘッダー。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#f38ba8;">XSS (Cross-Site Scripting)</span><br>\n  攻撃: ユーザー入力にscriptを注入<br>\n  対策: Reactは自動エスケープ<br>\n  <span style="color:#f38ba8;">危険: dangerouslySetInnerHTML</span><br><br>\n<span style="color:#f38ba8;">CSRF (Cross-Site Request Forgery)</span><br>\n  攻撃: 偽サイトからリクエスト偽装<br>\n  対策: CSRFトークン, SameSite Cookie<br><br>\n<span style="color:#a6e3a1;">安全なコーディング:</span><br>\n<span style="color:#6c7086;">// ✓ Reactの自動エスケープ</span><br>\n&lt;p&gt;{userInput}&lt;/p&gt;<br><br>\n<span style="color:#6c7086;">// ✗ 直接HTML注入（避ける）</span><br>\n&lt;div dangerouslySetInnerHTML=<br>\n  {{ __html: userInput }} /&gt;<br><br>\n<span style="color:#6c7086;">// ✓ 環境変数でAPIキー管理</span><br>\n<span style="color:#6c7086;">// ✗ コードにハードコード</span>\n</div>',
+                },
+                tags: ["XSS", "CSRF", "CSP", "セキュリティ", "エスケープ"],
+              },
+            ],
+          },
+          {
+            id: "fe-a-deploy",
+            title: "デプロイ・CI/CD",
+            description: "本番環境への公開とワークフロー",
+            topics: [
+              {
+                id: "fe-vercel-deploy",
+                title: "Vercel / CI/CD",
+                subtitle: "デプロイとワークフロー",
+                description: "VercelはNext.jsの開発元が運営するホスティングサービス。GitHubリポジトリと連携し、pushするたびに自動でビルド・デプロイ（CI/CD）。プレビューURL、本番URLが自動生成される。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">Vercel デプロイフロー:</span><br><br>\n1. GitHub にプッシュ<br>\n   <span style="color:#f9e2af;">$ git push origin main</span><br><br>\n2. Vercel が自動検知<br>\n   → npm install<br>\n   → npm run build<br>\n   → デプロイ<br><br>\n3. URL が生成される<br>\n   本番: <span style="color:#a6e3a1;">myapp.vercel.app</span><br>\n   PR:   <span style="color:#a6e3a1;">myapp-git-feature-xxx.vercel.app</span><br><br>\n<span style="color:#89b4fa;">プレビューデプロイ:</span><br>\n  feature ブランチのPR → 自動プレビュー<br>\n  レビュアーが実際の動作を確認可能<br><br>\n<span style="color:#89b4fa;">環境変数:</span><br>\n  Vercel ダッシュボード → Settings<br>\n  → Environment Variables で設定\n</div>',
+                },
+                tags: ["Vercel", "CI/CD", "デプロイ", "プレビュー", "GitHub連携"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];

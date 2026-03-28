@@ -6,6 +6,8 @@ const navLinks = [
   { href: "/technology/react", label: "React" },
   { href: "/technology/tailwind-css", label: "Tailwind" },
   { href: "/technology/shadcn-ui", label: "shadcn/ui" },
+  { href: "/technology/nextjs", label: "Next.js" },
+  { href: "/technology/frontend-basics", label: "基礎知識" },
 ];
 
 const linkClass =
