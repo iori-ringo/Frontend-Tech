@@ -1,4 +1,4 @@
-import { FileCode2, Palette, Atom, Wind, Component, Globe, BookOpen } from "lucide-react";
+import { FileCode2, Palette, Atom, Wind, Component, Globe, BookOpen, Zap, Rocket } from "lucide-react";
 
 import type { Technology } from "@/types/technology";
 
@@ -10,6 +10,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Component,
   Globe,
   BookOpen,
+  Zap,
+  Rocket,
 };
 
 type TechnologyHeaderProps = {

@@ -1863,4 +1863,306 @@ export const technologies: Technology[] = [
       },
     ],
   },
+  {
+    slug: "vite",
+    name: "Vite",
+    description: "高速なフロントエンドビルドツール",
+    longDescription:
+      "Vite は ESモジュールベースの高速な開発サーバーとビルドツールです。HMR（Hot Module Replacement）が極めて速く、React/Vue/Svelte等のフレームワークに対応。Rollupベースの本番ビルドで最適化されたバンドルを生成します。",
+    icon: "Zap",
+    color: "oklch(0.60 0.20 300)",
+    officialUrl: "https://vite.dev",
+    levels: [
+      {
+        level: "beginner",
+        label: "初級",
+        description: "Viteの基本概念とプロジェクト構成を学びます。",
+        sections: [
+          {
+            id: "vite-b-setup",
+            title: "セットアップ・基本",
+            description: "プロジェクト作成と設定",
+            topics: [
+              {
+                id: "vite-create",
+                title: "npm create vite@latest",
+                subtitle: "プロジェクト作成",
+                description: "npm create vite@latest でプロジェクトをスキャフォールド。テンプレート選択でReact+TypeScript、Vue、Svelte等を指定可能。従来のCreate React Appに代わるモダンな選択肢。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#f9e2af;">$ npm create vite@latest my-app</span><br><br>\n<span style="color:#6c7086;">テンプレート選択:</span><br>\n  ❯ react-ts    <span style="color:#a6e3a1;">← React + TypeScript</span><br>\n    react-swc-ts <span style="color:#6c7086;">← SWCで高速ビルド</span><br>\n    vue-ts<br>\n    svelte-ts<br>\n    vanilla-ts<br><br>\n<span style="color:#f9e2af;">$ cd my-app</span><br>\n<span style="color:#f9e2af;">$ npm install</span><br>\n<span style="color:#f9e2af;">$ npm run dev</span><br><br>\n<span style="color:#a6e3a1;">→ http://localhost:5173</span><br>\n<span style="color:#6c7086;">（起動が超高速！）</span>\n</div>',
+                },
+                tags: ["create vite", "テンプレート", "react-ts", "scaffold"],
+              },
+              {
+                id: "vite-project-structure",
+                title: "プロジェクト構成",
+                subtitle: "ファイル構造",
+                description: "index.html がエントリーポイント（ViteはHTMLファーストの設計）。src/main.tsx がJSエントリー。vite.config.ts で設定。public/ は静的ファイル（変換されずそのままコピー）。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\nmy-app/<br>\n├── <span style="color:#f9e2af;">index.html</span>        <span style="color:#a6e3a1;">← エントリーポイント</span><br>\n├── <span style="color:#f9e2af;">vite.config.ts</span>    <span style="color:#6c7086;">← 設定ファイル</span><br>\n├── package.json<br>\n├── tsconfig.json<br>\n├── public/<br>\n│   └── favicon.svg    <span style="color:#6c7086;">← 静的ファイル</span><br>\n└── src/<br>\n    ├── <span style="color:#f9e2af;">main.tsx</span>       <span style="color:#a6e3a1;">← JSエントリー</span><br>\n    ├── App.tsx<br>\n    ├── App.css<br>\n    └── vite-env.d.ts  <span style="color:#6c7086;">← 型定義</span><br><br>\n<span style="color:#6c7086;">// index.html 内:</span><br>\n&lt;script type="module" src="/src/main.tsx"&gt;<br>\n<span style="color:#6c7086;">↑ ESモジュールとして直接読み込む</span>\n</div>',
+                },
+                tags: ["index.html", "main.tsx", "vite.config.ts", "public"],
+              },
+              {
+                id: "vite-why-fast",
+                title: "なぜ速いのか",
+                subtitle: "ESM + esbuild",
+                description: "開発時: ブラウザのネイティブESモジュールを利用し、バンドルせずにファイルを個別配信。依存パッケージはesbuildで事前バンドル（Go製で超高速）。変更ファイルのみHMRで即座に反映。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">従来のバンドラー (webpack等):</span><br>\n全ファイルをバンドル → 1つのJSに結合<br>\n→ プロジェクトが大きくなると起動が遅い<br>\n→ 変更のたびに再バンドル<br><br>\n<span style="color:#a6e3a1;">Viteのアプローチ:</span><br>\n1. 依存パッケージ → esbuild で事前バンドル<br>\n   <span style="color:#6c7086;">(Go製、JSバンドラーの10-100倍速)</span><br><br>\n2. ソースコード → バンドルしない<br>\n   ブラウザのESM (import/export) で直接読込<br>\n   <span style="color:#6c7086;">(必要なファイルだけオンデマンド変換)</span><br><br>\n3. HMR → 変更ファイルだけ差し替え<br>\n   <span style="color:#6c7086;">(プロジェクトサイズに関係なく高速)</span><br><br>\n<span style="color:#f9e2af;">本番ビルド: Rollup で最適化バンドル</span>\n</div>',
+                },
+                tags: ["ESM", "esbuild", "HMR", "バンドル", "高速"],
+              },
+            ],
+          },
+          {
+            id: "vite-b-config",
+            title: "設定",
+            description: "vite.config.ts の基本設定",
+            topics: [
+              {
+                id: "vite-config-basics",
+                title: "vite.config.ts",
+                subtitle: "基本設定",
+                description: "defineConfig で型安全に設定。plugins でフレームワーク対応（@vitejs/plugin-react）。resolve.alias でパスエイリアス（@/ → src/）。server でポートやプロキシを設定。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> { defineConfig } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"vite"</span>;<br>\n<span style="color:#cba6f7;">import</span> react <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@vitejs/plugin-react"</span>;<br>\n<span style="color:#cba6f7;">import</span> path <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"path"</span>;<br><br>\n<span style="color:#cba6f7;">export default</span> defineConfig({<br>\n  plugins: [react()],<br>\n  resolve: {<br>\n    alias: {<br>\n      <span style="color:#a6e3a1;">"@"</span>: path.resolve(__dirname, <span style="color:#a6e3a1;">"./src"</span>),<br>\n    },<br>\n  },<br>\n  server: {<br>\n    port: 3000,<br>\n    proxy: {<br>\n      <span style="color:#a6e3a1;">"/api"</span>: <span style="color:#a6e3a1;">"http://localhost:8080"</span>,<br>\n    },<br>\n  },<br>\n});\n</div>',
+                },
+                tags: ["defineConfig", "plugins", "alias", "proxy"],
+              },
+              {
+                id: "vite-env-vars",
+                title: "import.meta.env",
+                subtitle: "環境変数",
+                description: "Viteでは.envファイルの変数にVITE_接頭辞を付けるとクライアントで使用可能。import.meta.envでアクセス。process.envではなくimport.meta.envを使う点がNode.jsとの違い。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// .env</span><br>\nVITE_API_URL=<span style="color:#a6e3a1;">"https://api.example.com"</span><br>\nDB_SECRET=<span style="color:#a6e3a1;">"secret"</span>  <span style="color:#f38ba8;">← VITE_なし = サーバーのみ</span><br><br>\n<span style="color:#6c7086;">// 使い方</span><br>\n<span style="color:#cba6f7;">const</span> url = <span style="color:#89b4fa;">import.meta.env</span>.VITE_API_URL;<br>\n<span style="color:#cba6f7;">const</span> mode = <span style="color:#89b4fa;">import.meta.env</span>.MODE;<br>\n<span style="color:#6c7086;">// → "development" or "production"</span><br><br>\n<span style="color:#cba6f7;">const</span> isDev = <span style="color:#89b4fa;">import.meta.env</span>.DEV; <span style="color:#6c7086;">// boolean</span><br>\n<span style="color:#cba6f7;">const</span> isProd = <span style="color:#89b4fa;">import.meta.env</span>.PROD;<br><br>\n<span style="color:#f38ba8;">// NG: process.env は使えない</span><br>\n<span style="color:#a6e3a1;">// OK: import.meta.env を使う</span>\n</div>',
+                },
+                tags: ["import.meta.env", "VITE_", ".env", "MODE"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "intermediate",
+        label: "中級",
+        description: "プラグイン、ビルド最適化、開発ツール連携を学びます。",
+        sections: [
+          {
+            id: "vite-i-plugins",
+            title: "プラグイン・最適化",
+            description: "Viteのプラグインシステムと最適化",
+            topics: [
+              {
+                id: "vite-plugins",
+                title: "プラグインシステム",
+                subtitle: "Rollup互換プラグイン",
+                description: "ViteのプラグインはRollupプラグインAPIの拡張。開発時のフック（configureServer等）と本番ビルド時のフック（transform等）がある。コミュニティプラグインが豊富。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">よく使うプラグイン:</span><br><br>\n<span style="color:#a6e3a1;">@vitejs/plugin-react</span><br>\n  React Fast Refresh (HMR)<br><br>\n<span style="color:#a6e3a1;">vite-tsconfig-paths</span><br>\n  tsconfig.json のパスエイリアスを自動反映<br><br>\n<span style="color:#a6e3a1;">vite-plugin-svgr</span><br>\n  SVGをReactコンポーネントとしてimport<br><br>\n<span style="color:#a6e3a1;">@vitejs/plugin-legacy</span><br>\n  古いブラウザ向けにpolyfill自動追加<br><br>\n<span style="color:#6c7086;">// vite.config.ts</span><br>\nplugins: [<br>\n  react(),<br>\n  tsconfigPaths(),<br>\n  svgr(),<br>\n]\n</div>',
+                },
+                tags: ["plugin", "Rollup", "@vitejs/plugin-react", "svgr"],
+              },
+              {
+                id: "vite-build-optimize",
+                title: "ビルド最適化",
+                subtitle: "コード分割・圧縮",
+                description: "build.rollupOptionsでチャンク分割戦略を制御。manualChunksでベンダーライブラリを分離。build.targetでサポートブラウザを指定。cssCodeSplitでCSS分割。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">export default</span> defineConfig({<br>\n  build: {<br>\n    target: <span style="color:#a6e3a1;">"es2020"</span>,<br>\n    rollupOptions: {<br>\n      output: {<br>\n        manualChunks: {<br>\n          <span style="color:#6c7086;">// ベンダーを分離</span><br>\n          vendor: [<span style="color:#a6e3a1;">"react"</span>, <span style="color:#a6e3a1;">"react-dom"</span>],<br>\n          ui: [<span style="color:#a6e3a1;">"lucide-react"</span>],<br>\n        },<br>\n      },<br>\n    },<br>\n    cssCodeSplit: <span style="color:#fab387;">true</span>,<br>\n    sourcemap: <span style="color:#fab387;">true</span>,<br>\n  },<br>\n});<br><br>\n<span style="color:#f9e2af;">$ npm run build</span><br>\n<span style="color:#6c7086;">→ dist/ に最適化済みファイルが出力</span>\n</div>',
+                },
+                tags: ["build", "manualChunks", "target", "sourcemap"],
+              },
+              {
+                id: "vite-css-support",
+                title: "CSS / PostCSS / Tailwind",
+                subtitle: "スタイル処理",
+                description: "ViteはCSS Modules、PostCSS、Sass/Less/Stylusをネイティブサポート。Tailwind CSSはPostCSSプラグインとして統合。CSS Modulesは.module.cssの命名規則で自動有効化。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">CSS Modules:</span><br>\n<span style="color:#6c7086;">// button.module.css</span><br>\n.primary { background: teal; }<br><br>\n<span style="color:#6c7086;">// Button.tsx</span><br>\n<span style="color:#cba6f7;">import</span> styles <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"./button.module.css"</span>;<br>\n&lt;button className={styles.primary}&gt;<br><br>\n<span style="color:#89b4fa;">Tailwind CSS:</span><br>\n<span style="color:#6c7086;">// postcss.config.js</span><br>\nmodule.exports = {<br>\n  plugins: {<br>\n    tailwindcss: {},<br>\n    autoprefixer: {},<br>\n  },<br>\n};<br><br>\n<span style="color:#89b4fa;">Sass:</span><br>\n<span style="color:#f9e2af;">$ npm install -D sass</span><br>\n<span style="color:#6c7086;">→ .scss ファイルが即座に使える</span>\n</div>',
+                },
+                tags: ["CSS Modules", "PostCSS", "Tailwind", "Sass"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "advanced",
+        label: "上級",
+        description: "SSR、ライブラリモード、カスタムプラグイン開発を学びます。",
+        sections: [
+          {
+            id: "vite-a-advanced",
+            title: "高度な機能",
+            description: "Viteの上級機能",
+            topics: [
+              {
+                id: "vite-ssr",
+                title: "SSR / SSG",
+                subtitle: "サーバーサイド対応",
+                description: "ViteはSSR（サーバーサイドレンダリング）をネイティブサポート。ssrLoadModuleでサーバーサイドでモジュールを実行。Next.js/Nuxt/Astro等のフレームワークがViteのSSR機能を内部で利用。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// server.js（SSR サーバー）</span><br>\n<span style="color:#cba6f7;">import</span> { createServer } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"vite"</span>;<br><br>\n<span style="color:#cba6f7;">const</span> vite = <span style="color:#cba6f7;">await</span> createServer({<br>\n  server: { middlewareMode: <span style="color:#fab387;">true</span> },<br>\n  appType: <span style="color:#a6e3a1;">"custom"</span>,<br>\n});<br><br>\napp.use(vite.middlewares);<br><br>\napp.use(<span style="color:#a6e3a1;">"*"</span>, <span style="color:#cba6f7;">async</span> (req, res) =&gt; {<br>\n  <span style="color:#6c7086;">// サーバーサイドでReactをレンダリング</span><br>\n  <span style="color:#cba6f7;">const</span> { render } = <span style="color:#cba6f7;">await</span> vite.ssrLoadModule(<br>\n    <span style="color:#a6e3a1;">"/src/entry-server.tsx"</span><br>\n  );<br>\n  <span style="color:#cba6f7;">const</span> html = <span style="color:#cba6f7;">await</span> render(req.url);<br>\n  res.send(html);<br>\n});<br><br>\n<span style="color:#6c7086;">// 多くの場合、Next.js/Astro等の</span><br>\n<span style="color:#6c7086;">// フレームワークがこれを内部で処理</span>\n</div>',
+                },
+                tags: ["SSR", "ssrLoadModule", "middlewareMode", "entry-server"],
+              },
+              {
+                id: "vite-library-mode",
+                title: "ライブラリモード",
+                subtitle: "ライブラリ公開用ビルド",
+                description: "build.lib でnpmパッケージとしてライブラリをビルド。ES ModulesとCommonJSの両方を出力可能。externalsで依存を除外し、バンドルサイズを最小化。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// vite.config.ts（ライブラリモード）</span><br>\n<span style="color:#cba6f7;">export default</span> defineConfig({<br>\n  build: {<br>\n    lib: {<br>\n      entry: <span style="color:#a6e3a1;">"src/index.ts"</span>,<br>\n      name: <span style="color:#a6e3a1;">"MyLib"</span>,<br>\n      formats: [<span style="color:#a6e3a1;">"es"</span>, <span style="color:#a6e3a1;">"cjs"</span>],<br>\n      fileName: (format) =&gt;<br>\n        `my-lib.${format}.js`,<br>\n    },<br>\n    rollupOptions: {<br>\n      <span style="color:#6c7086;">// 外部依存を除外</span><br>\n      external: [<span style="color:#a6e3a1;">"react"</span>, <span style="color:#a6e3a1;">"react-dom"</span>],<br>\n    },<br>\n  },<br>\n});<br><br>\n<span style="color:#6c7086;">// package.json</span><br>\n"main": "dist/my-lib.cjs.js",<br>\n"module": "dist/my-lib.es.js",<br>\n"types": "dist/index.d.ts"\n</div>',
+                },
+                tags: ["lib", "formats", "external", "npmパッケージ"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "astro",
+    name: "Astro",
+    description: "コンテンツ重視の高速な静的サイトフレームワーク",
+    longDescription:
+      "Astro はコンテンツ重視のWebサイト向けフレームワークです。デフォルトでJavaScriptゼロのHTMLを出力し、必要な部分だけインタラクティブにする「アイランドアーキテクチャ」が特徴。React/Vue/Svelte等のコンポーネントを混在利用できます。",
+    icon: "Rocket",
+    color: "oklch(0.55 0.18 310)",
+    officialUrl: "https://astro.build",
+    levels: [
+      {
+        level: "beginner",
+        label: "初級",
+        description: "Astroの基本概念、.astroファイル、ルーティングを学びます。",
+        sections: [
+          {
+            id: "astro-b-basics",
+            title: "基本概念",
+            description: "Astroの特徴と基本構造",
+            topics: [
+              {
+                id: "astro-why",
+                title: "Astroの特徴",
+                subtitle: "なぜAstroを使うのか",
+                description: "デフォルトでJSゼロ出力（超高速）。コンテンツサイト（ブログ、ドキュメント、LP）に最適。React/Vue/Svelteのコンポーネントを同じプロジェクトで混在可能。Markdownネイティブ対応。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">Astro vs 他のフレームワーク:</span><br><br>\n<span style="color:#a6e3a1;">Next.js</span> → アプリケーション向け<br>\n  (SPA, SSR, API Routes)<br><br>\n<span style="color:#a6e3a1;">Astro</span>  → コンテンツサイト向け<br>\n  (ブログ, ドキュメント, LP, ポートフォリオ)<br><br>\n<span style="color:#89b4fa;">Astroの強み:</span><br>\n✓ デフォルトでJS 0KB（超高速表示）<br>\n✓ 必要な部分だけJSを送信<br>\n✓ React + Vue を同じページで使える<br>\n✓ Markdown/MDX ネイティブ対応<br>\n✓ Content Collections で型安全<br>\n✓ View Transitions API 対応\n</div>',
+                },
+                tags: ["JSゼロ", "コンテンツサイト", "高速", "マルチフレームワーク"],
+              },
+              {
+                id: "astro-file",
+                title: ".astro ファイル",
+                subtitle: "コンポーネント構文",
+                description: ".astroファイルはフロントマター（---で囲んだサーバーサイドJS）とテンプレート（HTML）で構成。フロントマターはビルド時にサーバーで実行され、クライアントには送信されない。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// src/pages/index.astro</span><br>\n<span style="color:#cba6f7;">---</span><br>\n<span style="color:#6c7086;">// フロントマター（サーバーで実行）</span><br>\n<span style="color:#cba6f7;">const</span> title = <span style="color:#a6e3a1;">"Hello Astro"</span>;<br>\n<span style="color:#cba6f7;">const</span> items = [<span style="color:#a6e3a1;">"React"</span>, <span style="color:#a6e3a1;">"Vue"</span>, <span style="color:#a6e3a1;">"Svelte"</span>];<br>\n<span style="color:#cba6f7;">const</span> res = <span style="color:#cba6f7;">await</span> fetch(<span style="color:#a6e3a1;">"..."</span>);<br>\n<span style="color:#cba6f7;">---</span><br><br>\n<span style="color:#6c7086;">&lt;!-- テンプレート（HTML出力） --&gt;</span><br>\n&lt;<span style="color:#89b4fa;">h1</span>&gt;{title}&lt;/<span style="color:#89b4fa;">h1</span>&gt;<br>\n&lt;<span style="color:#89b4fa;">ul</span>&gt;<br>\n  {items.map((item) =&gt; (<br>\n    &lt;<span style="color:#89b4fa;">li</span>&gt;{item}&lt;/<span style="color:#89b4fa;">li</span>&gt;<br>\n  ))}<br>\n&lt;/<span style="color:#89b4fa;">ul</span>&gt;<br><br>\n&lt;<span style="color:#89b4fa;">style</span>&gt;<br>\n  h1 { color: teal; }<br>\n  <span style="color:#6c7086;">/* スコープ付きCSS（自動） */</span><br>\n&lt;/<span style="color:#89b4fa;">style</span>&gt;\n</div>',
+                },
+                tags: [".astro", "フロントマター", "---", "スコープCSS"],
+              },
+              {
+                id: "astro-routing",
+                title: "ファイルベースルーティング",
+                subtitle: "pages ディレクトリ",
+                description: "src/pages/ のファイル構造がURLになる（Next.jsと同様）。.astro, .md, .mdx ファイルがページになる。[slug].astro で動的ルート。getStaticPaths() で静的生成するパスを定義。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\nsrc/pages/<br>\n├── index.astro       <span style="color:#a6e3a1;">→ /</span><br>\n├── about.astro       <span style="color:#a6e3a1;">→ /about</span><br>\n├── blog/<br>\n│   ├── index.astro   <span style="color:#a6e3a1;">→ /blog</span><br>\n│   └── [slug].astro  <span style="color:#a6e3a1;">→ /blog/hello</span><br>\n└── posts/<br>\n    └── hello.md      <span style="color:#a6e3a1;">→ /posts/hello</span><br><br>\n<span style="color:#6c7086;">// [slug].astro</span><br>\n<span style="color:#cba6f7;">---</span><br>\n<span style="color:#cba6f7;">export function</span> getStaticPaths() {<br>\n  <span style="color:#cba6f7;">return</span> [<br>\n    { params: { slug: <span style="color:#a6e3a1;">"hello"</span> } },<br>\n    { params: { slug: <span style="color:#a6e3a1;">"world"</span> } },<br>\n  ];<br>\n}<br>\n<span style="color:#cba6f7;">const</span> { slug } = Astro.params;<br>\n<span style="color:#cba6f7;">---</span>\n</div>',
+                },
+                tags: ["pages", "ルーティング", "[slug]", "getStaticPaths"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "intermediate",
+        label: "中級",
+        description: "アイランドアーキテクチャ、Content Collections、インテグレーションを学びます。",
+        sections: [
+          {
+            id: "astro-i-islands",
+            title: "アイランドアーキテクチャ",
+            description: "部分的なインタラクティビティ",
+            topics: [
+              {
+                id: "astro-client-directives",
+                title: "client:* ディレクティブ",
+                subtitle: "アイランドの制御",
+                description: "Astroコンポーネントはデフォルトでサーバーのみ（JS送信なし）。React/Vueコンポーネントにclient:ディレクティブを付けるとクライアントでもインタラクティブに動作する「アイランド」になる。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// .astro ファイル内</span><br><br>\n<span style="color:#6c7086;">&lt;!-- JS送信なし（デフォルト） --&gt;</span><br>\n&lt;<span style="color:#a6e3a1;">Header</span> /&gt;<br><br>\n<span style="color:#6c7086;">&lt;!-- すぐにハイドレーション --&gt;</span><br>\n&lt;<span style="color:#a6e3a1;">Counter</span> <span style="color:#f9e2af;">client:load</span> /&gt;<br><br>\n<span style="color:#6c7086;">&lt;!-- 画面に入ったらハイドレーション --&gt;</span><br>\n&lt;<span style="color:#a6e3a1;">Comments</span> <span style="color:#f9e2af;">client:visible</span> /&gt;<br><br>\n<span style="color:#6c7086;">&lt;!-- アイドル時にハイドレーション --&gt;</span><br>\n&lt;<span style="color:#a6e3a1;">Analytics</span> <span style="color:#f9e2af;">client:idle</span> /&gt;<br><br>\n<span style="color:#6c7086;">&lt;!-- メディアクエリに一致した時 --&gt;</span><br>\n&lt;<span style="color:#a6e3a1;">MobileMenu</span> <span style="color:#f9e2af;">client:media</span>=<span style="color:#a6e3a1;">"(max-width:768px)"</span> /&gt;<br><br>\n<span style="color:#6c7086;">&lt;!-- ハイドレーションしない（HTMLのみ） --&gt;</span><br>\n&lt;<span style="color:#a6e3a1;">ReactCard</span> /&gt;\n</div>',
+                },
+                tags: ["client:load", "client:visible", "client:idle", "アイランド"],
+              },
+              {
+                id: "astro-multi-framework",
+                title: "マルチフレームワーク",
+                subtitle: "React + Vue + Svelte 混在",
+                description: "同じAstroプロジェクト内でReact、Vue、Svelte、Solidのコンポーネントを同時に使える。各フレームワークのインテグレーションを追加するだけで設定完了。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// astro.config.mjs</span><br>\n<span style="color:#cba6f7;">import</span> react <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@astrojs/react"</span>;<br>\n<span style="color:#cba6f7;">import</span> vue <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@astrojs/vue"</span>;<br>\n<span style="color:#cba6f7;">import</span> svelte <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@astrojs/svelte"</span>;<br><br>\n<span style="color:#cba6f7;">export default</span> defineConfig({<br>\n  integrations: [react(), vue(), svelte()],<br>\n});<br><br>\n<span style="color:#6c7086;">// page.astro — 混在利用</span><br>\n<span style="color:#cba6f7;">---</span><br>\n<span style="color:#cba6f7;">import</span> ReactCounter <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"./Counter.tsx"</span>;<br>\n<span style="color:#cba6f7;">import</span> VueCard <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"./Card.vue"</span>;<br>\n<span style="color:#cba6f7;">import</span> SvelteToggle <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"./Toggle.svelte"</span>;<br>\n<span style="color:#cba6f7;">---</span><br>\n&lt;<span style="color:#a6e3a1;">ReactCounter</span> client:load /&gt;<br>\n&lt;<span style="color:#a6e3a1;">VueCard</span> title=<span style="color:#a6e3a1;">"Vue"</span> /&gt;<br>\n&lt;<span style="color:#a6e3a1;">SvelteToggle</span> client:visible /&gt;\n</div>',
+                },
+                tags: ["React", "Vue", "Svelte", "integrations"],
+              },
+            ],
+          },
+          {
+            id: "astro-i-content",
+            title: "Content Collections",
+            description: "型安全なコンテンツ管理",
+            topics: [
+              {
+                id: "astro-collections",
+                title: "Content Collections",
+                subtitle: "型安全なMarkdown管理",
+                description: "src/content/ にMarkdown/MDXファイルを配置し、Zodスキーマでフロントマターを型検証。getCollection()で型安全にコンテンツを取得。ブログやドキュメントサイトに最適。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// src/content/config.ts</span><br>\n<span style="color:#cba6f7;">import</span> { defineCollection, z } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"astro:content"</span>;<br><br>\n<span style="color:#cba6f7;">const</span> blog = defineCollection({<br>\n  schema: z.object({<br>\n    title: z.string(),<br>\n    date: z.date(),<br>\n    tags: z.array(z.string()),<br>\n    draft: z.boolean().default(<span style="color:#fab387;">false</span>),<br>\n  }),<br>\n});<br><br>\n<span style="color:#cba6f7;">export const</span> collections = { blog };<br><br>\n<span style="color:#6c7086;">// 使用側</span><br>\n<span style="color:#cba6f7;">const</span> posts = <span style="color:#cba6f7;">await</span> getCollection(<span style="color:#a6e3a1;">"blog"</span>,<br>\n  ({ data }) =&gt; !data.draft<br>\n);<br>\n<span style="color:#6c7086;">// → 型安全！ data.title は string</span>\n</div>',
+                },
+                tags: ["Content Collections", "Zod", "getCollection", "Markdown"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "advanced",
+        label: "上級",
+        description: "SSR、View Transitions、パフォーマンス最適化を学びます。",
+        sections: [
+          {
+            id: "astro-a-advanced",
+            title: "高度な機能",
+            description: "Astroの上級機能",
+            topics: [
+              {
+                id: "astro-ssr",
+                title: "SSR / ハイブリッドレンダリング",
+                subtitle: "サーバーサイドレンダリング",
+                description: "output: 'hybrid' で静的ページをデフォルトにしつつ、特定ページだけSSRに切り替え。export const prerender = false でSSRページを指定。Vercel/Cloudflare等のアダプターで動的サーバー機能を有効化。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// astro.config.mjs</span><br>\n<span style="color:#cba6f7;">import</span> vercel <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@astrojs/vercel"</span>;<br><br>\n<span style="color:#cba6f7;">export default</span> defineConfig({<br>\n  output: <span style="color:#a6e3a1;">"hybrid"</span>,<br>\n  adapter: vercel(),<br>\n});<br><br>\n<span style="color:#6c7086;">// ほとんどのページ → 静的 (デフォルト)</span><br>\n<span style="color:#6c7086;">// 特定ページだけ SSR:</span><br><br>\n<span style="color:#6c7086;">// src/pages/dashboard.astro</span><br>\n<span style="color:#cba6f7;">---</span><br>\n<span style="color:#cba6f7;">export const</span> prerender = <span style="color:#fab387;">false</span>;<br>\n<span style="color:#6c7086;">// ↑ このページだけSSR</span><br><br>\n<span style="color:#cba6f7;">const</span> user = <span style="color:#cba6f7;">await</span> getUser(Astro.cookies);<br>\n<span style="color:#cba6f7;">---</span><br>\n&lt;<span style="color:#89b4fa;">h1</span>&gt;{user.name}のダッシュボード&lt;/<span style="color:#89b4fa;">h1</span>&gt;\n</div>',
+                },
+                tags: ["hybrid", "prerender", "adapter", "SSR"],
+              },
+              {
+                id: "astro-view-transitions",
+                title: "View Transitions",
+                subtitle: "ページ遷移アニメーション",
+                description: "AstroはView Transitions APIをネイティブサポート。<ViewTransitions />をhead内に追加するだけでSPAライクなページ遷移アニメーションを実現。transition:nameで要素間のモーフィングも可能。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// Layout.astro</span><br>\n<span style="color:#cba6f7;">---</span><br>\n<span style="color:#cba6f7;">import</span> { ViewTransitions } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"astro:transitions"</span>;<br>\n<span style="color:#cba6f7;">---</span><br>\n&lt;<span style="color:#89b4fa;">head</span>&gt;<br>\n  &lt;<span style="color:#a6e3a1;">ViewTransitions</span> /&gt;<br>\n&lt;/<span style="color:#89b4fa;">head</span>&gt;<br><br>\n<span style="color:#6c7086;">// 要素間のモーフィング</span><br>\n<span style="color:#6c7086;">// 一覧ページ:</span><br>\n&lt;<span style="color:#89b4fa;">img</span> src={post.image}<br>\n  <span style="color:#f9e2af;">transition:name</span>={`hero-${post.slug}`}<br>\n/&gt;<br><br>\n<span style="color:#6c7086;">// 詳細ページ（同じtransition:name）:</span><br>\n&lt;<span style="color:#89b4fa;">img</span> src={post.image}<br>\n  <span style="color:#f9e2af;">transition:name</span>={`hero-${post.slug}`}<br>\n/&gt;<br>\n<span style="color:#6c7086;">// → 画像がスムーズに遷移アニメーション</span>\n</div>',
+                },
+                tags: ["ViewTransitions", "transition:name", "モーフィング", "SPA風"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];

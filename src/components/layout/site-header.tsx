@@ -8,6 +8,8 @@ const navLinks = [
   { href: "/technology/shadcn-ui", label: "shadcn/ui" },
   { href: "/technology/nextjs", label: "Next.js" },
   { href: "/technology/frontend-basics", label: "基礎知識" },
+  { href: "/technology/vite", label: "Vite" },
+  { href: "/technology/astro", label: "Astro" },
 ];
 
 const linkClass =
