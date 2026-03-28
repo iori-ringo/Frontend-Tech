@@ -25,10 +25,10 @@ export function TechnologyHeader({ technology }: TechnologyHeaderProps) {
         <div className="flex items-start gap-phi-sm sm:gap-phi-md">
           {/* アイコン */}
           <div
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg sm:h-14 sm:w-14 sm:rounded-xl md:h-16 md:w-16"
+            className="flex h-phi-xl w-phi-xl shrink-0 items-center justify-center rounded-lg sm:h-phi-2xl sm:w-phi-2xl sm:rounded-xl md:h-phi-3xl md:w-phi-3xl"
             style={{ backgroundColor: technology.color, color: "white" }}
           >
-            {Icon ? <Icon className="h-5 w-5 sm:h-7 sm:w-7 md:h-8 md:w-8" /> : null}
+            {Icon ? <Icon className="h-phi-md w-phi-md sm:h-phi-lg sm:w-phi-lg md:h-phi-xl md:w-phi-xl" /> : null}
           </div>
 
           {/* テキスト */}

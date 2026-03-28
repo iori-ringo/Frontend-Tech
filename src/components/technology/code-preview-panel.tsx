@@ -74,20 +74,20 @@ export function CodePreviewPanel({ code }: CodePreviewPanelProps) {
             aria-label="コードをコピー"
           >
             {copied ? (
-              <Check className="h-4 w-4 text-primary" />
+              <Check className="h-phi-md w-phi-md text-primary" />
             ) : (
-              <Copy className="h-4 w-4" />
+              <Copy className="h-phi-md w-phi-md" />
             )}
           </button>
         </div>
         <pre className="overflow-x-auto p-phi-2xs sm:p-phi-sm">
-          <code className="text-[11px] leading-[1.5] font-mono text-foreground sm:text-[length:var(--font-size-caption)] sm:leading-[var(--leading-phi)]">
+          <code className="text-[length:var(--font-size-caption)] leading-[var(--leading-phi-half)] font-mono text-foreground sm:leading-[var(--leading-phi)]">
             {code.html}
           </code>
           {code.css ? (
             <>
               <div className="my-phi-2xs border-t border-border" />
-              <code className="text-[11px] leading-[1.5] font-mono text-primary/80 sm:text-[length:var(--font-size-caption)] sm:leading-[var(--leading-phi)]">
+              <code className="text-[length:var(--font-size-caption)] leading-[var(--leading-phi-half)] font-mono text-primary/80 sm:leading-[var(--leading-phi)]">
                 {code.css}
               </code>
             </>
@@ -107,7 +107,7 @@ export function CodePreviewPanel({ code }: CodePreviewPanelProps) {
           srcDoc={srcdoc}
           sandbox="allow-same-origin"
           title="プレビュー"
-          className="w-full min-h-[100px] border-0 sm:min-h-[120px]"
+          className="w-full min-h-phi-2xl border-0 sm:min-h-phi-3xl"
         />
       </div>
     </div>

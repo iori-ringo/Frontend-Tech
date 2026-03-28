@@ -33,10 +33,10 @@ export function TechnologyCard({ technology }: TechnologyCardProps) {
     >
       {/* アイコン */}
       <div
-        className="mb-phi-2xs flex h-10 w-10 items-center justify-center rounded-lg sm:mb-phi-sm sm:h-12 sm:w-12"
+        className="mb-phi-2xs flex h-phi-xl w-phi-xl items-center justify-center rounded-lg sm:mb-phi-sm sm:h-phi-2xl sm:w-phi-2xl"
         style={{ backgroundColor: technology.color, color: "white" }}
       >
-        {Icon ? <Icon className="h-5 w-5 sm:h-6 sm:w-6" /> : null}
+        {Icon ? <Icon className="h-phi-md w-phi-md sm:h-phi-lg sm:w-phi-lg" /> : null}
       </div>
 
       {/* テキストコンテンツ — 光学補正: テキスト先頭のため上部paddingは軽め */}

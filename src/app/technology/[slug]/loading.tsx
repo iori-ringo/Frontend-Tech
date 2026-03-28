@@ -1,13 +1,13 @@
 export default function Loading() {
   return (
-    <div className="mx-auto max-w-5xl px-phi-md py-phi-2xl md:px-phi-lg">
+    <div className="mx-auto max-w-5xl px-phi-sm py-phi-xl sm:px-phi-md md:px-phi-lg">
       {/* ヘッダースケルトン */}
-      <div className="flex items-start gap-phi-md">
-        <div className="h-14 w-14 animate-pulse rounded-xl bg-muted md:h-16 md:w-16" />
+      <div className="flex items-start gap-phi-sm sm:gap-phi-md">
+        <div className="h-phi-xl w-phi-xl animate-pulse rounded-lg bg-muted sm:h-phi-2xl sm:w-phi-2xl sm:rounded-xl" />
         <div className="flex-1 space-y-phi-2xs">
-          <div className="h-8 w-32 animate-pulse rounded-md bg-muted" />
-          <div className="h-5 w-full max-w-md animate-pulse rounded-md bg-muted" />
-          <div className="h-5 w-48 animate-pulse rounded-md bg-muted" />
+          <div className="h-phi-lg w-phi-3xl animate-pulse rounded-md bg-muted" />
+          <div className="h-phi-md w-full max-w-phi-4xl animate-pulse rounded-md bg-muted" />
+          <div className="h-phi-md w-phi-3xl animate-pulse rounded-md bg-muted" />
         </div>
       </div>
 
@@ -17,7 +17,7 @@ export default function Loading() {
           {Array.from({ length: 3 }).map((_, i) => (
             <div
               key={i}
-              className="h-11 animate-pulse rounded-md bg-muted"
+              className="h-phi-xl animate-pulse rounded-md bg-muted"
             />
           ))}
         </div>
@@ -25,7 +25,7 @@ export default function Loading() {
           {Array.from({ length: 3 }).map((_, i) => (
             <div
               key={i}
-              className="h-28 animate-pulse rounded-lg bg-muted"
+              className="h-phi-3xl animate-pulse rounded-lg bg-muted"
             />
           ))}
         </div>
