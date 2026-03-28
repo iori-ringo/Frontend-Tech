@@ -20,30 +20,30 @@ export function TechnologyHeader({ technology }: TechnologyHeaderProps) {
   const Icon = iconMap[technology.icon];
 
   return (
-    <section className="py-phi-xl md:py-phi-2xl">
-      <div className="mx-auto max-w-5xl px-phi-md md:px-phi-lg">
-        <div className="flex items-start gap-phi-md">
+    <section className="py-phi-lg sm:py-phi-xl md:py-phi-2xl">
+      <div className="mx-auto max-w-5xl px-phi-sm sm:px-phi-md md:px-phi-lg">
+        <div className="flex items-start gap-phi-sm sm:gap-phi-md">
           {/* アイコン */}
           <div
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl md:h-16 md:w-16"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg sm:h-14 sm:w-14 sm:rounded-xl md:h-16 md:w-16"
             style={{ backgroundColor: technology.color, color: "white" }}
           >
-            {Icon ? <Icon className="h-7 w-7 md:h-8 md:w-8" /> : null}
+            {Icon ? <Icon className="h-5 w-5 sm:h-7 sm:w-7 md:h-8 md:w-8" /> : null}
           </div>
 
           {/* テキスト */}
-          <div>
-            <h1 className="text-[length:var(--font-size-title2)] font-bold leading-[var(--leading-phi-half)] text-foreground md:text-[length:var(--font-size-title1)]">
+          <div className="min-w-0">
+            <h1 className="text-[length:var(--font-size-title3)] font-bold leading-[var(--leading-phi-half)] text-foreground sm:text-[length:var(--font-size-title2)] md:text-[length:var(--font-size-title1)]">
               {technology.name}
             </h1>
-            <p className="mt-phi-2xs max-w-[var(--max-w-phi-prose)] text-[length:var(--font-size-body)] leading-[var(--leading-phi)] text-muted-foreground">
+            <p className="mt-phi-2xs max-w-[var(--max-w-phi-prose)] text-[length:var(--font-size-subheading)] leading-[var(--leading-phi)] text-muted-foreground sm:text-[length:var(--font-size-body)]">
               {technology.longDescription}
             </p>
             <a
               href={technology.officialUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-phi-sm inline-block text-[length:var(--font-size-subheading)] leading-[var(--leading-phi-half)] text-primary transition-colors duration-[var(--duration-phi-md)] hover:text-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+              className="mt-phi-sm inline-block text-[length:var(--font-size-caption)] leading-[var(--leading-phi-half)] text-primary transition-colors duration-[var(--duration-phi-md)] hover:text-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md sm:text-[length:var(--font-size-subheading)]"
             >
               公式ドキュメント →
             </a>

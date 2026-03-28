@@ -11,12 +11,12 @@ type LevelTabsProps = {
 export function LevelTabs({ levels }: LevelTabsProps) {
   return (
     <Tabs defaultValue={levels[0]?.level} className="w-full">
-      <TabsList className="mb-phi-lg grid w-full grid-cols-3 shadow-neumorphic-inset">
+      <TabsList className="mb-phi-md grid w-full grid-cols-3 shadow-neumorphic-inset sm:mb-phi-lg">
         {levels.map((levelContent) => (
           <TabsTrigger
             key={levelContent.level}
             value={levelContent.level}
-            className="min-h-[44px] text-[length:var(--font-size-body)] leading-[var(--leading-phi-half)] transition-all duration-[var(--duration-phi-md)]"
+            className="min-h-[44px] text-[length:var(--font-size-caption)] leading-[var(--leading-phi-half)] transition-all duration-[var(--duration-phi-md)] sm:text-[length:var(--font-size-body)]"
           >
             {levelContent.label}
           </TabsTrigger>
@@ -25,12 +25,9 @@ export function LevelTabs({ levels }: LevelTabsProps) {
 
       {levels.map((levelContent) => (
         <TabsContent key={levelContent.level} value={levelContent.level}>
-          {/* レベル説明 */}
-          <p className="mb-phi-md text-[length:var(--font-size-body)] leading-[var(--leading-phi)] text-muted-foreground">
+          <p className="mb-phi-sm text-[length:var(--font-size-subheading)] leading-[var(--leading-phi)] text-muted-foreground sm:mb-phi-md sm:text-[length:var(--font-size-body)]">
             {levelContent.description}
           </p>
-
-          {/* セクション一覧 */}
           {levelContent.sections.map((section) => (
             <ContentSection key={section.id} section={section} />
           ))}

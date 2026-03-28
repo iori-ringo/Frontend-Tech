@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-phi-md py-phi-3xl">
-      <h1 className="text-[length:var(--font-size-display2)] font-bold leading-[var(--leading-phi-quarter)] text-foreground">
+    <div className="flex flex-1 flex-col items-center justify-center px-phi-sm py-phi-2xl sm:px-phi-md sm:py-phi-3xl">
+      <h1 className="text-[length:var(--font-size-title1)] font-bold leading-[var(--leading-phi-quarter)] text-foreground sm:text-[length:var(--font-size-display2)]">
         404
       </h1>
       <p className="mt-phi-sm text-[length:var(--font-size-heading)] leading-[var(--leading-phi-half)] text-muted-foreground">

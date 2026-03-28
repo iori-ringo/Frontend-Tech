@@ -63,7 +63,7 @@ export function CodePreviewPanel({ code }: CodePreviewPanelProps) {
     <div className="grid grid-cols-1 overflow-hidden rounded-lg border border-border md:grid-cols-2">
       {/* コードパネル */}
       <div className="relative border-b border-border bg-muted/30 md:border-b-0 md:border-r">
-        <div className="flex items-center justify-between border-b border-border px-phi-sm py-phi-3xs">
+        <div className="flex items-center justify-between border-b border-border px-phi-2xs py-phi-3xs sm:px-phi-sm">
           <span className="text-[length:var(--font-size-caption)] font-medium leading-[var(--leading-phi-half)] text-muted-foreground">
             コード
           </span>
@@ -80,14 +80,14 @@ export function CodePreviewPanel({ code }: CodePreviewPanelProps) {
             )}
           </button>
         </div>
-        <pre className="overflow-x-auto p-phi-sm">
-          <code className="text-[length:var(--font-size-caption)] leading-[var(--leading-phi)] font-mono text-foreground">
+        <pre className="overflow-x-auto p-phi-2xs sm:p-phi-sm">
+          <code className="text-[11px] leading-[1.5] font-mono text-foreground sm:text-[length:var(--font-size-caption)] sm:leading-[var(--leading-phi)]">
             {code.html}
           </code>
           {code.css ? (
             <>
               <div className="my-phi-2xs border-t border-border" />
-              <code className="text-[length:var(--font-size-caption)] leading-[var(--leading-phi)] font-mono text-primary/80">
+              <code className="text-[11px] leading-[1.5] font-mono text-primary/80 sm:text-[length:var(--font-size-caption)] sm:leading-[var(--leading-phi)]">
                 {code.css}
               </code>
             </>
@@ -97,7 +97,7 @@ export function CodePreviewPanel({ code }: CodePreviewPanelProps) {
 
       {/* プレビューパネル */}
       <div>
-        <div className="border-b border-border px-phi-sm py-phi-3xs">
+        <div className="border-b border-border px-phi-2xs py-phi-3xs sm:px-phi-sm">
           <span className="text-[length:var(--font-size-caption)] font-medium leading-[var(--leading-phi-half)] text-muted-foreground">
             表示結果
           </span>
@@ -107,7 +107,7 @@ export function CodePreviewPanel({ code }: CodePreviewPanelProps) {
           srcDoc={srcdoc}
           sandbox="allow-same-origin"
           title="プレビュー"
-          className="w-full min-h-[120px] border-0"
+          className="w-full min-h-[100px] border-0 sm:min-h-[120px]"
         />
       </div>
     </div>

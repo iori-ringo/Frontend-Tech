@@ -11,22 +11,41 @@ const navLinks = [
 ];
 
 const linkClass =
-  "text-[length:var(--font-size-caption)] md:text-[length:var(--font-size-body)] text-muted-foreground transition-colors duration-[var(--duration-phi-md)] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md px-phi-2xs py-phi-3xs";
+  "shrink-0 text-[length:var(--font-size-caption)] md:text-[length:var(--font-size-subheading)] text-muted-foreground transition-colors duration-[var(--duration-phi-md)] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md px-phi-2xs py-phi-3xs";
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 glass-strong">
-      <nav
-        className="mx-auto flex max-w-5xl items-center justify-between px-phi-md py-phi-sm md:px-phi-lg"
-        aria-label="メインナビゲーション"
-      >
+      {/* ロゴ行 */}
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-phi-sm py-phi-2xs md:px-phi-lg md:py-phi-sm">
         <Link
           href="/"
-          className="text-[length:var(--font-size-heading)] font-bold leading-[var(--leading-phi-half)] text-foreground transition-colors duration-[var(--duration-phi-md)] hover:text-primary"
+          className="shrink-0 text-[length:var(--font-size-subheading)] font-bold leading-[var(--leading-phi-half)] text-foreground transition-colors duration-[var(--duration-phi-md)] hover:text-primary md:text-[length:var(--font-size-heading)]"
         >
           Frontend Learning
         </Link>
-        <ul className="flex items-center gap-phi-2xs md:gap-phi-sm" role="list">
+        {/* デスクトップナビ（md以上で表示） */}
+        <nav className="hidden md:block" aria-label="メインナビゲーション">
+          <ul className="flex items-center gap-phi-sm" role="list">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className={linkClass}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+      {/* モバイルナビ（md未満で横スクロール表示） */}
+      <nav
+        className="border-t border-border/50 md:hidden"
+        aria-label="メインナビゲーション"
+      >
+        <ul
+          className="flex gap-phi-3xs overflow-x-auto px-phi-sm py-phi-3xs scrollbar-none"
+          role="list"
+        >
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link href={link.href} className={linkClass}>

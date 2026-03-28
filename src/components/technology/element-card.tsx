@@ -9,19 +9,19 @@ type ElementCardProps = {
 
 export function ElementCard({ topic }: ElementCardProps) {
   return (
-    <article className="scroll-mt-20" id={topic.id}>
+    <article className="scroll-mt-16 md:scroll-mt-20" id={topic.id}>
       {/* ヘッダー: タグ名 + 日本語名 */}
-      <div className="flex items-baseline gap-phi-sm">
-        <h3 className="text-[length:var(--font-size-title3)] font-bold leading-[var(--leading-phi-half)] text-foreground font-mono">
+      <div className="flex flex-col gap-phi-3xs sm:flex-row sm:items-baseline sm:gap-phi-sm">
+        <h3 className="text-[length:var(--font-size-heading)] font-bold leading-[var(--leading-phi-half)] text-foreground font-mono sm:text-[length:var(--font-size-title3)]">
           {topic.title}
         </h3>
-        <span className="text-[length:var(--font-size-subheading)] leading-[var(--leading-phi-half)] text-muted-foreground">
+        <span className="text-[length:var(--font-size-caption)] leading-[var(--leading-phi-half)] text-muted-foreground sm:text-[length:var(--font-size-subheading)]">
           {topic.subtitle}
         </span>
       </div>
 
       {/* 説明文 */}
-      <p className="mt-phi-2xs max-w-[var(--max-w-phi-prose)] text-[length:var(--font-size-body)] leading-[var(--leading-phi)] text-foreground/80 whitespace-pre-line">
+      <p className="mt-phi-2xs max-w-[var(--max-w-phi-prose)] text-[length:var(--font-size-subheading)] leading-[var(--leading-phi)] text-foreground/80 whitespace-pre-line sm:text-[length:var(--font-size-body)]">
         {topic.description}
       </p>
 
@@ -43,7 +43,7 @@ export function ElementCard({ topic }: ElementCardProps) {
         ))}
       </div>
 
-      <Separator className="mt-phi-lg" />
+      <Separator className="mt-phi-md sm:mt-phi-lg" />
     </article>
   );
 }

@@ -36,8 +36,8 @@ export default async function TechnologyPage({ params }: TechnologyPageProps) {
   return (
     <>
       <TechnologyHeader technology={technology} />
-      <section className="pb-phi-2xl md:pb-phi-3xl">
-        <div className="mx-auto max-w-5xl px-phi-md md:px-phi-lg">
+      <section className="pb-phi-xl sm:pb-phi-2xl md:pb-phi-3xl">
+        <div className="mx-auto max-w-5xl px-phi-sm sm:px-phi-md md:px-phi-lg">
           <LevelTabs levels={technology.levels} />
         </div>
       </section>
