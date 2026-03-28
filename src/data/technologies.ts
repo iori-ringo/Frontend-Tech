@@ -960,4 +960,541 @@ export const technologies: Technology[] = [
       },
     ],
   },
+  {
+    slug: "react",
+    name: "React",
+    description: "UIを構築するためのJavaScriptライブラリ",
+    longDescription:
+      "React は Meta が開発したUI構築ライブラリです。コンポーネントベースの設計で、宣言的なUIと効率的な再レンダリングを実現します。Hooks APIを使ったモダンなReact開発を学びます。",
+    icon: "Atom",
+    color: "oklch(0.55 0.15 200)",
+    officialUrl: "https://react.dev",
+    levels: [
+      {
+        level: "beginner",
+        label: "初級",
+        description: "Reactの基本概念、コンポーネント、JSXを学びます。",
+        sections: [
+          {
+            id: "react-b-basics",
+            title: "JSX とコンポーネント",
+            description: "Reactの基本的な書き方",
+            topics: [
+              {
+                id: "react-jsx",
+                title: "JSX",
+                subtitle: "JavaScript内のHTML風構文",
+                description: "JSXはJavaScript内にHTMLライクな構文を書ける拡張。ブラウザが直接理解するものではなく、ビルド時にJavaScriptに変換される。中括弧{}でJavaScript式を埋め込める。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">Greeting</span>() {<br>\n  <span style="color:#cba6f7;">const</span> name = <span style="color:#a6e3a1;">"太郎"</span>;<br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;<span style="color:#89b4fa;">div</span>&gt;<br>\n      &lt;<span style="color:#89b4fa;">h1</span>&gt;こんにちは、{name}さん&lt;/<span style="color:#89b4fa;">h1</span>&gt;<br>\n      &lt;<span style="color:#89b4fa;">p</span>&gt;今日は {<span style="color:#cba6f7;">new</span> Date().toLocaleDateString()} です&lt;/<span style="color:#89b4fa;">p</span>&gt;<br>\n    &lt;/<span style="color:#89b4fa;">div</span>&gt;<br>\n  );<br>\n}<br><br>\n<span style="color:#6c7086;">// {}内にはJavaScript式が書ける</span><br>\n<span style="color:#6c7086;">// 三項演算子、関数呼び出し、配列メソッド等</span>\n</div>',
+                },
+                tags: ["JSX", "{}", "式の埋め込み", "コンポーネント"],
+              },
+              {
+                id: "react-component",
+                title: "function Component",
+                subtitle: "関数コンポーネント",
+                description: "Reactコンポーネントは大文字で始まる関数。JSXを返すことでUIを定義する。1つのファイルに1つのコンポーネントが基本。コンポーネントを組み合わせてUIを構築する。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// コンポーネント定義</span><br>\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">Button</span>() {<br>\n  <span style="color:#cba6f7;">return</span> &lt;<span style="color:#89b4fa;">button</span>&gt;クリック&lt;/<span style="color:#89b4fa;">button</span>&gt;;<br>\n}<br><br>\n<span style="color:#6c7086;">// コンポーネントの組み合わせ</span><br>\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">App</span>() {<br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;<span style="color:#89b4fa;">div</span>&gt;<br>\n      &lt;<span style="color:#89b4fa;">h1</span>&gt;アプリ&lt;/<span style="color:#89b4fa;">h1</span>&gt;<br>\n      &lt;<span style="color:#a6e3a1;">Button</span> /&gt;  <span style="color:#6c7086;">← コンポーネントを使用</span><br>\n      &lt;<span style="color:#a6e3a1;">Button</span> /&gt;  <span style="color:#6c7086;">← 再利用可能</span><br>\n    &lt;/<span style="color:#89b4fa;">div</span>&gt;<br>\n  );<br>\n}\n</div>',
+                },
+                tags: ["関数コンポーネント", "大文字始まり", "再利用"],
+              },
+              {
+                id: "react-props",
+                title: "props",
+                subtitle: "コンポーネントへのデータ渡し",
+                description: "propsは親コンポーネントから子コンポーネントにデータを渡す仕組み。読み取り専用で、子は受け取ったpropsを変更してはいけない。TypeScriptでは型を定義して安全に使う。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">type</span> <span style="color:#89b4fa;">CardProps</span> = {<br>\n  title: <span style="color:#a6e3a1;">string</span>;<br>\n  description: <span style="color:#a6e3a1;">string</span>;<br>\n  isNew?: <span style="color:#a6e3a1;">boolean</span>;  <span style="color:#6c7086;">// ? = 省略可</span><br>\n};<br><br>\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">Card</span>({ title, description, isNew }: <span style="color:#89b4fa;">CardProps</span>) {<br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;<span style="color:#89b4fa;">div</span>&gt;<br>\n      &lt;<span style="color:#89b4fa;">h2</span>&gt;{title} {isNew &amp;&amp; <span style="color:#a6e3a1;">"🆕"</span>}&lt;/<span style="color:#89b4fa;">h2</span>&gt;<br>\n      &lt;<span style="color:#89b4fa;">p</span>&gt;{description}&lt;/<span style="color:#89b4fa;">p</span>&gt;<br>\n    &lt;/<span style="color:#89b4fa;">div</span>&gt;<br>\n  );<br>\n}<br><br>\n<span style="color:#6c7086;">// 使う側</span><br>\n&lt;<span style="color:#a6e3a1;">Card</span> title=<span style="color:#a6e3a1;">"React"</span> description=<span style="color:#a6e3a1;">"UIライブラリ"</span> isNew /&gt;\n</div>',
+                },
+                tags: ["props", "型定義", "分割代入", "読み取り専用"],
+              },
+              {
+                id: "react-children",
+                title: "children",
+                subtitle: "子要素の受け渡し",
+                description: "childrenは特別なpropsで、コンポーネントの開始タグと閉じタグの間に書いた内容が渡される。レイアウトコンポーネントやラッパーコンポーネントで頻繁に使われる。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">Card</span>({ children }: { children: React.ReactNode }) {<br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;<span style="color:#89b4fa;">div</span> className=<span style="color:#a6e3a1;">"border rounded-lg p-4"</span>&gt;<br>\n      {children}  <span style="color:#6c7086;">← 中身は使う側が決める</span><br>\n    &lt;/<span style="color:#89b4fa;">div</span>&gt;<br>\n  );<br>\n}<br><br>\n<span style="color:#6c7086;">// 使う側</span><br>\n&lt;<span style="color:#a6e3a1;">Card</span>&gt;<br>\n  &lt;<span style="color:#89b4fa;">h2</span>&gt;タイトル&lt;/<span style="color:#89b4fa;">h2</span>&gt;<br>\n  &lt;<span style="color:#89b4fa;">p</span>&gt;自由な中身&lt;/<span style="color:#89b4fa;">p</span>&gt;<br>\n&lt;/<span style="color:#a6e3a1;">Card</span>&gt;\n</div>',
+                },
+                tags: ["children", "ReactNode", "ラッパー", "コンポジション"],
+              },
+              {
+                id: "react-conditional",
+                title: "条件付きレンダリング / リスト",
+                subtitle: "動的なUI表示",
+                description: "&&演算子や三項演算子で条件付き表示。配列のmap()でリストを描画し、各要素にユニークなkey属性が必須。keyはReactが効率的にDOMを更新するために使用する。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// 条件付き表示</span><br>\n{isLoggedIn ? &lt;<span style="color:#a6e3a1;">Dashboard</span> /&gt; : &lt;<span style="color:#a6e3a1;">Login</span> /&gt;}<br>\n{hasError &amp;&amp; &lt;<span style="color:#89b4fa;">p</span>&gt;エラー発生&lt;/<span style="color:#89b4fa;">p</span>&gt;}<br><br>\n<span style="color:#6c7086;">// リスト表示</span><br>\n<span style="color:#cba6f7;">const</span> items = [<span style="color:#a6e3a1;">"React"</span>, <span style="color:#a6e3a1;">"Vue"</span>, <span style="color:#a6e3a1;">"Angular"</span>];<br><br>\n&lt;<span style="color:#89b4fa;">ul</span>&gt;<br>\n  {items.map((item) =&gt; (<br>\n    &lt;<span style="color:#89b4fa;">li</span> <span style="color:#f9e2af;">key</span>={item}&gt;{item}&lt;/<span style="color:#89b4fa;">li</span>&gt;<br>\n  ))}<br>\n&lt;/<span style="color:#89b4fa;">ul</span>&gt;<br><br>\n<span style="color:#f38ba8;">// NG: key={index} はアンチパターン</span>\n</div>',
+                },
+                tags: ["条件分岐", "&&", "三項演算子", "map", "key"],
+              },
+            ],
+          },
+          {
+            id: "react-b-hooks",
+            title: "基本Hooks",
+            description: "状態管理と副作用の基本",
+            topics: [
+              {
+                id: "react-usestate",
+                title: "useState",
+                subtitle: "状態管理",
+                description: "コンポーネント内で状態（変化する値）を管理するHook。[値, 更新関数]のペアを返す。更新関数を呼ぶとコンポーネントが再レンダリングされる。直接値を変更してはいけない。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> { useState } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"react"</span>;<br><br>\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">Counter</span>() {<br>\n  <span style="color:#cba6f7;">const</span> [count, setCount] = <span style="color:#89b4fa;">useState</span>(0);<br><br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;<span style="color:#89b4fa;">div</span>&gt;<br>\n      &lt;<span style="color:#89b4fa;">p</span>&gt;カウント: {count}&lt;/<span style="color:#89b4fa;">p</span>&gt;<br>\n      &lt;<span style="color:#89b4fa;">button</span> onClick={() =&gt; setCount(count + 1)}&gt;<br>\n        +1<br>\n      &lt;/<span style="color:#89b4fa;">button</span>&gt;<br>\n      &lt;<span style="color:#89b4fa;">button</span> onClick={() =&gt; setCount(0)}&gt;<br>\n        リセット<br>\n      &lt;/<span style="color:#89b4fa;">button</span>&gt;<br>\n    &lt;/<span style="color:#89b4fa;">div</span>&gt;<br>\n  );<br>\n}\n</div>',
+                },
+                tags: ["useState", "状態管理", "再レンダリング", "更新関数"],
+              },
+              {
+                id: "react-useeffect",
+                title: "useEffect",
+                subtitle: "副作用の実行",
+                description: "レンダリング後に実行される副作用（API呼び出し、タイマー、DOM操作等）を管理。依存配列で実行タイミングを制御。クリーンアップ関数で後片付け。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> { useState, useEffect } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"react"</span>;<br><br>\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">Timer</span>() {<br>\n  <span style="color:#cba6f7;">const</span> [sec, setSec] = <span style="color:#89b4fa;">useState</span>(0);<br><br>\n  <span style="color:#89b4fa;">useEffect</span>(() =&gt; {<br>\n    <span style="color:#cba6f7;">const</span> id = setInterval(() =&gt; {<br>\n      setSec((s) =&gt; s + 1);<br>\n    }, 1000);<br><br>\n    <span style="color:#6c7086;">// クリーンアップ（コンポーネント消滅時）</span><br>\n    <span style="color:#cba6f7;">return</span> () =&gt; clearInterval(id);<br>\n  }, []); <span style="color:#6c7086;">← 空配列 = マウント時のみ</span><br><br>\n  <span style="color:#cba6f7;">return</span> &lt;<span style="color:#89b4fa;">p</span>&gt;{sec}秒経過&lt;/<span style="color:#89b4fa;">p</span>&gt;;<br>\n}<br><br>\n<span style="color:#6c7086;">// 依存配列:</span><br>\n<span style="color:#6c7086;">// []      → マウント時のみ</span><br>\n<span style="color:#6c7086;">// [count] → countが変わるたび</span><br>\n<span style="color:#6c7086;">// 省略    → 毎レンダリング（非推奨）</span>\n</div>',
+                },
+                tags: ["useEffect", "副作用", "依存配列", "クリーンアップ"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "intermediate",
+        label: "中級",
+        description: "高度なHooks、カスタムHook、パターンを学びます。",
+        sections: [
+          {
+            id: "react-i-hooks",
+            title: "追加Hooks",
+            description: "状態管理とパフォーマンスのためのHook",
+            topics: [
+              {
+                id: "react-useref",
+                title: "useRef",
+                subtitle: "値の永続化・DOM参照",
+                description: "再レンダリングを引き起こさずに値を保持するHook。DOM要素への参照（ref）としてもよく使われる。.currentプロパティで値にアクセス。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// DOM参照</span><br>\n<span style="color:#cba6f7;">const</span> inputRef = <span style="color:#89b4fa;">useRef</span>&lt;HTMLInputElement&gt;(<span style="color:#fab387;">null</span>);<br><br>\n&lt;<span style="color:#89b4fa;">input</span> ref={inputRef} /&gt;<br>\n&lt;<span style="color:#89b4fa;">button</span> onClick={() =&gt; inputRef.current?.focus()}&gt;<br>\n  フォーカス<br>\n&lt;/<span style="color:#89b4fa;">button</span>&gt;<br><br>\n<span style="color:#6c7086;">// 値の永続化（レンダリングをまたいで保持）</span><br>\n<span style="color:#cba6f7;">const</span> renderCount = <span style="color:#89b4fa;">useRef</span>(0);<br>\nrenderCount.current += 1;<br>\n<span style="color:#6c7086;">// ↑ 更新しても再レンダリングされない</span>\n</div>',
+                },
+                tags: ["useRef", "ref", "DOM参照", "current"],
+              },
+              {
+                id: "react-usememo-callback",
+                title: "useMemo / useCallback",
+                subtitle: "メモ化",
+                description: "useMemoは計算結果をキャッシュし、依存値が変わった時だけ再計算。useCallbackは関数をメモ化し、子コンポーネントへの不要な再レンダリングを防ぐ。過度な使用は逆効果。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// 重い計算をメモ化</span><br>\n<span style="color:#cba6f7;">const</span> sorted = <span style="color:#89b4fa;">useMemo</span>(<br>\n  () =&gt; items.sort((a, b) =&gt; a.price - b.price),<br>\n  [items]  <span style="color:#6c7086;">← itemsが変わった時だけ再計算</span><br>\n);<br><br>\n<span style="color:#6c7086;">// 関数をメモ化（子への不要な再レンダリング防止）</span><br>\n<span style="color:#cba6f7;">const</span> handleClick = <span style="color:#89b4fa;">useCallback</span>(<br>\n  () =&gt; setCount((c) =&gt; c + 1),<br>\n  []  <span style="color:#6c7086;">← 依存なし = 常に同じ関数</span><br>\n);<br><br>\n<span style="color:#f38ba8;">// ⚠ 全てをメモ化する必要はない</span><br>\n<span style="color:#f38ba8;">// 本当にパフォーマンス問題がある時だけ使う</span>\n</div>',
+                },
+                tags: ["useMemo", "useCallback", "メモ化", "パフォーマンス"],
+              },
+              {
+                id: "react-custom-hook",
+                title: "カスタムHook",
+                subtitle: "ロジックの再利用",
+                description: "use で始まる関数として、複数のコンポーネントで共通するロジックを抽出・再利用できる。useState や useEffect 等の組み合わせをカプセル化する。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// カスタムHook定義</span><br>\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">useToggle</span>(initial = <span style="color:#fab387;">false</span>) {<br>\n  <span style="color:#cba6f7;">const</span> [on, setOn] = useState(initial);<br>\n  <span style="color:#cba6f7;">const</span> toggle = useCallback(<br>\n    () =&gt; setOn((v) =&gt; !v), []<br>\n  );<br>\n  <span style="color:#cba6f7;">return</span> { on, toggle } <span style="color:#cba6f7;">as const</span>;<br>\n}<br><br>\n<span style="color:#6c7086;">// 使う側</span><br>\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">Menu</span>() {<br>\n  <span style="color:#cba6f7;">const</span> { on: isOpen, toggle } = <span style="color:#89b4fa;">useToggle</span>();<br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;&gt;<br>\n      &lt;<span style="color:#89b4fa;">button</span> onClick={toggle}&gt;メニュー&lt;/<span style="color:#89b4fa;">button</span>&gt;<br>\n      {isOpen &amp;&amp; &lt;<span style="color:#89b4fa;">nav</span>&gt;...&lt;/<span style="color:#89b4fa;">nav</span>&gt;}<br>\n    &lt;/&gt;<br>\n  );<br>\n}\n</div>',
+                },
+                tags: ["カスタムHook", "use接頭辞", "ロジック再利用"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "advanced",
+        label: "上級",
+        description: "Server Components、Suspense、パフォーマンス最適化を学びます。",
+        sections: [
+          {
+            id: "react-a-patterns",
+            title: "設計パターン",
+            description: "スケーラブルなReactアプリケーション設計",
+            topics: [
+              {
+                id: "react-server-components",
+                title: "Server Components / Client Components",
+                subtitle: "サーバー・クライアント分離",
+                description: "Next.js App RouterではデフォルトがServer Component（サーバーで実行、JS送信なし）。useState等のインタラクティブ機能が必要な場合のみ\"use client\"を付けてClient Componentにする。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// Server Component（デフォルト）</span><br>\n<span style="color:#6c7086;">// → サーバーで実行、JSバンドルに含まれない</span><br>\n<span style="color:#cba6f7;">async function</span> <span style="color:#89b4fa;">UserList</span>() {<br>\n  <span style="color:#cba6f7;">const</span> users = <span style="color:#cba6f7;">await</span> fetchUsers();<br>\n  <span style="color:#cba6f7;">return</span> &lt;<span style="color:#89b4fa;">ul</span>&gt;{users.map(...)}&lt;/<span style="color:#89b4fa;">ul</span>&gt;;<br>\n}<br><br>\n<span style="color:#6c7086;">// Client Component（"use client"を宣言）</span><br>\n<span style="color:#a6e3a1;">"use client"</span>;<br>\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">Counter</span>() {<br>\n  <span style="color:#cba6f7;">const</span> [c, setC] = useState(0);<br>\n  <span style="color:#6c7086;">// ↑ useState等が必要 → Client必須</span><br>\n  <span style="color:#cba6f7;">return</span> &lt;<span style="color:#89b4fa;">button</span> onClick={...}&gt;{c}&lt;/<span style="color:#89b4fa;">button</span>&gt;;<br>\n}\n</div>',
+                },
+                tags: ["Server Components", "use client", "Next.js", "バンドルサイズ"],
+              },
+              {
+                id: "react-suspense",
+                title: "Suspense / lazy",
+                subtitle: "非同期UI・コード分割",
+                description: "Suspenseは非同期処理中のフォールバックUIを宣言的に定義。React.lazyと組み合わせてコンポーネントを遅延読み込み（コード分割）し、初期バンドルサイズを削減。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> { Suspense, lazy } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"react"</span>;<br><br>\n<span style="color:#6c7086;">// 遅延読み込み（必要になるまでロードしない）</span><br>\n<span style="color:#cba6f7;">const</span> HeavyChart = lazy(() =&gt;<br>\n  <span style="color:#cba6f7;">import</span>(<span style="color:#a6e3a1;">"./HeavyChart"</span>)<br>\n);<br><br>\n<span style="color:#cba6f7;">function</span> <span style="color:#89b4fa;">Dashboard</span>() {<br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;<span style="color:#a6e3a1;">Suspense</span> fallback={&lt;<span style="color:#89b4fa;">p</span>&gt;読み込み中...&lt;/<span style="color:#89b4fa;">p</span>&gt;}&gt;<br>\n      &lt;<span style="color:#a6e3a1;">HeavyChart</span> /&gt;<br>\n    &lt;/<span style="color:#a6e3a1;">Suspense</span>&gt;<br>\n  );<br>\n}\n</div>',
+                },
+                tags: ["Suspense", "lazy", "コード分割", "フォールバック"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "tailwind-css",
+    name: "Tailwind CSS",
+    description: "ユーティリティファーストのCSSフレームワーク",
+    longDescription:
+      "Tailwind CSS はユーティリティクラスを組み合わせてスタイリングするCSSフレームワークです。CSSファイルを書かずにHTML/JSX内でデザインを完結でき、デザインシステムとの統合も容易です。",
+    icon: "Wind",
+    color: "oklch(0.55 0.15 200)",
+    officialUrl: "https://tailwindcss.com",
+    levels: [
+      {
+        level: "beginner",
+        label: "初級",
+        description: "ユーティリティクラスの基本的な使い方を学びます。",
+        sections: [
+          {
+            id: "tw-b-spacing",
+            title: "スペーシング・サイズ",
+            description: "余白とサイズの制御",
+            topics: [
+              {
+                id: "tw-padding-margin",
+                title: "p-* / m-*",
+                subtitle: "パディング・マージン",
+                description: "p-4 は padding: 1rem (16px)。m-2 は margin: 0.5rem (8px)。方向指定: px-(左右), py-(上下), pt-(上), mb-(下)等。数値は4の倍数のpx: 1=4px, 2=8px, 4=16px, 8=32px。",
+                code: {
+                  html: '<div class="demo-p">p-4 (padding: 16px)</div>\n<div class="demo-px">px-6 py-2 (左右24px, 上下8px)</div>\n<div class="demo-m">mt-4 (margin-top: 16px)</div>',
+                  css: '.demo-p { padding: 16px; background: #0d9488; color: white; border-radius: 4px; margin-bottom: 8px; }\n.demo-px { padding: 8px 24px; background: #14b8a6; color: white; border-radius: 4px; margin-bottom: 8px; }\n.demo-m { margin-top: 16px; padding: 8px; background: #f0fafa; border: 2px dashed #0d9488; border-radius: 4px; }',
+                },
+                tags: ["p-*", "m-*", "px-*", "py-*", "spacing"],
+              },
+              {
+                id: "tw-width-height",
+                title: "w-* / h-* / max-w-*",
+                subtitle: "幅・高さ",
+                description: "w-full (100%), w-1/2 (50%), w-64 (16rem)。h-screen (100vh)。max-w-md, max-w-lg等のプリセット。min-h-screenでフルスクリーン高さ。",
+                code: {
+                  html: '<div class="w-full-demo">w-full (100%)</div>\n<div class="w-half-demo">w-1/2 (50%)</div>\n<div class="w-fixed-demo">w-48 (12rem)</div>',
+                  css: '.w-full-demo { width: 100%; background: #0d9488; color: white; padding: 8px; border-radius: 4px; margin-bottom: 4px; text-align: center; }\n.w-half-demo { width: 50%; background: #14b8a6; color: white; padding: 8px; border-radius: 4px; margin-bottom: 4px; text-align: center; }\n.w-fixed-demo { width: 12rem; background: #5eead4; color: #333; padding: 8px; border-radius: 4px; text-align: center; }',
+                },
+                tags: ["w-*", "h-*", "max-w-*", "min-h-*"],
+              },
+            ],
+          },
+          {
+            id: "tw-b-visual",
+            title: "テキスト・装飾",
+            description: "テキストと視覚的なスタイリング",
+            topics: [
+              {
+                id: "tw-text",
+                title: "text-* / font-*",
+                subtitle: "テキストスタイル",
+                description: "text-sm/base/lg/xl等でサイズ。text-center/right等で配置。font-bold/semibold等で太さ。text-gray-500等で色。leading-*で行間。tracking-*で文字間隔。",
+                code: {
+                  html: '<p class="t-sm">text-sm (14px)</p>\n<p class="t-xl">text-xl font-bold (20px太字)</p>\n<p class="t-center">text-center (中央揃え)</p>\n<p class="t-color">text-teal-600 (色付き)</p>',
+                  css: '.t-sm { font-size: 14px; }\n.t-xl { font-size: 20px; font-weight: bold; }\n.t-center { text-align: center; }\n.t-color { color: #0d9488; }',
+                },
+                tags: ["text-*", "font-*", "leading-*", "tracking-*"],
+              },
+              {
+                id: "tw-bg-border",
+                title: "bg-* / border-* / rounded-*",
+                subtitle: "背景・枠線・角丸",
+                description: "bg-blue-500等で背景色。border, border-2等で枠線。rounded-md/lg/full等で角丸。shadow-sm/md/lg等で影。ring-*でフォーカスリング。",
+                code: {
+                  html: '<div class="box-1">bg + border + rounded-lg</div>\n<div class="box-2">rounded-full + shadow-lg</div>',
+                  css: '.box-1 { background: #f0fdfa; border: 2px solid #0d9488; border-radius: 8px; padding: 12px; margin-bottom: 8px; }\n.box-2 { background: #0d9488; color: white; border-radius: 9999px; padding: 12px 24px; display: inline-block; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }',
+                },
+                tags: ["bg-*", "border-*", "rounded-*", "shadow-*", "ring-*"],
+              },
+            ],
+          },
+          {
+            id: "tw-b-layout",
+            title: "Flexbox / Grid",
+            description: "レイアウトユーティリティ",
+            topics: [
+              {
+                id: "tw-flex",
+                title: "flex / items-* / justify-*",
+                subtitle: "Flexboxレイアウト",
+                description: "flexでFlexコンテナ化。items-center (align-items: center), justify-between (justify-content: space-between)。gap-*でアイテム間隔。flex-col で縦並び。",
+                code: {
+                  html: '<div class="flex-demo">\n  <div class="flex-item">A</div>\n  <div class="flex-item">B</div>\n  <div class="flex-item">C</div>\n</div>',
+                  css: '.flex-demo {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 8px;\n  background: #f0fafa;\n  padding: 12px;\n  border-radius: 8px;\n}\n.flex-item {\n  background: #0d9488;\n  color: white;\n  padding: 12px 20px;\n  border-radius: 4px;\n}',
+                },
+                tags: ["flex", "items-*", "justify-*", "gap-*"],
+              },
+              {
+                id: "tw-grid",
+                title: "grid / grid-cols-*",
+                subtitle: "Gridレイアウト",
+                description: "gridでGridコンテナ化。grid-cols-3で3列。gap-*で間隔。col-span-2で2列分のセル。レスポンシブ: md:grid-cols-3。",
+                code: {
+                  html: '<div class="grid-demo">\n  <div class="grid-cell">1</div>\n  <div class="grid-cell">2</div>\n  <div class="grid-cell">3</div>\n  <div class="grid-cell span-2">col-span-2</div>\n  <div class="grid-cell">5</div>\n</div>',
+                  css: '.grid-demo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }\n.grid-cell { background: #0d9488; color: white; padding: 16px; border-radius: 4px; text-align: center; }\n.span-2 { grid-column: span 2; }',
+                },
+                tags: ["grid", "grid-cols-*", "col-span-*", "gap-*"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "intermediate",
+        label: "中級",
+        description: "レスポンシブ、状態バリアント、カスタマイズを学びます。",
+        sections: [
+          {
+            id: "tw-i-responsive",
+            title: "レスポンシブ・状態",
+            description: "ブレークポイントと状態バリアント",
+            topics: [
+              {
+                id: "tw-breakpoints",
+                title: "sm: / md: / lg: / xl:",
+                subtitle: "レスポンシブ接頭辞",
+                description: "モバイルファーストで、接頭辞はmin-width条件。sm:(640px〜), md:(768px〜), lg:(1024px〜), xl:(1280px〜)。接頭辞なし = 全サイズ。",
+                code: {
+                  html: '<div class="responsive-demo">\n  <div class="resp-item">1</div>\n  <div class="resp-item">2</div>\n  <div class="resp-item">3</div>\n</div>\n<p style="font-size:12px;color:#666;">↑ モバイル: 1列 → md: 3列</p>',
+                  css: '.responsive-demo {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 8px;\n}\n@media (min-width: 768px) {\n  .responsive-demo {\n    grid-template-columns: repeat(3, 1fr);\n  }\n}\n.resp-item { background: #0d9488; color: white; padding: 16px; border-radius: 4px; text-align: center; }',
+                },
+                tags: ["sm:", "md:", "lg:", "モバイルファースト"],
+              },
+              {
+                id: "tw-hover-focus",
+                title: "hover: / focus: / active: / group-hover:",
+                subtitle: "状態バリアント",
+                description: "hover:bg-blue-600 でホバー時のスタイル。focus:ring-2 でフォーカス時。group クラスの親に対して group-hover: で子のスタイルを変更可能。",
+                code: {
+                  html: '<button class="variant-demo">hover: / focus: / active:</button>\n<p style="font-size:12px;color:#666;margin-top:4px;">↑ ホバー・フォーカス・クリックで変化</p>',
+                  css: '.variant-demo {\n  padding: 12px 24px;\n  background: #0d9488;\n  color: white;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  font-size: 14px;\n  transition: all 0.2s;\n}\n.variant-demo:hover {\n  background: #0f766e;\n  transform: translateY(-1px);\n}\n.variant-demo:focus {\n  outline: 2px solid #14b8a6;\n  outline-offset: 2px;\n}\n.variant-demo:active {\n  transform: scale(0.98);\n}',
+                },
+                tags: ["hover:", "focus:", "active:", "group-hover:"],
+              },
+              {
+                id: "tw-dark-motion",
+                title: "dark: / motion-safe: / motion-reduce:",
+                subtitle: "メディアバリアント",
+                description: "dark:bg-gray-800 でダークモード時のスタイル。motion-safe: でアニメーション許可時のみ適用。motion-reduce: で動き軽減設定時のスタイル。",
+                code: {
+                  html: '<div class="dark-demo">\n  <p>ライトモード: 白背景</p>\n  <p>dark: → ダーク背景 に切り替わる</p>\n</div>\n<div class="motion-demo">motion-safe:animate-bounce</div>',
+                  css: '.dark-demo {\n  background: white;\n  color: #333;\n  padding: 12px;\n  border: 1px solid #ccc;\n  border-radius: 8px;\n  margin-bottom: 8px;\n}\n.motion-demo {\n  display: inline-block;\n  background: #0d9488;\n  color: white;\n  padding: 12px 20px;\n  border-radius: 8px;\n  animation: bounce 1s infinite;\n}\n@keyframes bounce {\n  0%, 100% { transform: translateY(0); }\n  50% { transform: translateY(-10px); }\n}\n@media (prefers-reduced-motion: reduce) {\n  .motion-demo { animation: none; }\n}',
+                },
+                tags: ["dark:", "motion-safe:", "motion-reduce:", "ダークモード"],
+              },
+            ],
+          },
+          {
+            id: "tw-i-custom",
+            title: "カスタマイズ",
+            description: "Tailwindの拡張と高度な使い方",
+            topics: [
+              {
+                id: "tw-arbitrary",
+                title: "w-[200px] / text-[#1da1f2]",
+                subtitle: "任意値 (Arbitrary Values)",
+                description: "[]内に任意のCSS値を指定できる。デザイントークンにない値が必要な時に使用。多用するとTailwindの利点（一貫性）が失われるため、テーマ拡張を優先する。",
+                code: {
+                  html: '<div class="arbitrary-demo">w-[200px] bg-[#0d9488]</div>\n<p class="arbitrary-text">text-[13px] leading-[1.8]</p>',
+                  css: '.arbitrary-demo {\n  width: 200px;\n  background: #0d9488;\n  color: white;\n  padding: 12px;\n  border-radius: 4px;\n  margin-bottom: 8px;\n}\n.arbitrary-text {\n  font-size: 13px;\n  line-height: 1.8;\n}',
+                },
+                tags: ["[]", "arbitrary values", "任意値"],
+              },
+              {
+                id: "tw-cn-clsx",
+                title: "cn() / clsx()",
+                subtitle: "条件付きクラス結合",
+                description: "clsxやcn（tailwind-mergeと組み合わせ）で、条件に応じたクラスの動的な結合ができる。重複するTailwindクラスを自動解決する。Reactコンポーネントでは必須パターン。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> { cn } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@/lib/utils"</span>;<br><br>\n<span style="color:#6c7086;">// 条件付きクラス</span><br>\n&lt;<span style="color:#89b4fa;">button</span><br>\n  className={cn(<br>\n    <span style="color:#a6e3a1;">"px-4 py-2 rounded-md"</span>,<br>\n    isActive<br>\n      ? <span style="color:#a6e3a1;">"bg-primary text-white"</span><br>\n      : <span style="color:#a6e3a1;">"bg-muted text-muted-foreground"</span>,<br>\n    className <span style="color:#6c7086;">← 親からのclass上書き</span><br>\n  )}<br>\n/&gt;<br><br>\n<span style="color:#6c7086;">// cn() = clsx() + tailwind-merge</span><br>\ncn(<span style="color:#a6e3a1;">"p-4"</span>, <span style="color:#a6e3a1;">"p-2"</span>) → <span style="color:#a6e3a1;">"p-2"</span> <span style="color:#6c7086;">← 後勝ち</span>\n</div>',
+                },
+                tags: ["cn()", "clsx()", "tailwind-merge", "条件付きクラス"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "advanced",
+        label: "上級",
+        description: "テーマ設計、プラグイン、パフォーマンス最適化を学びます。",
+        sections: [
+          {
+            id: "tw-a-theme",
+            title: "テーマ・設計",
+            description: "デザインシステムとしてのTailwind活用",
+            topics: [
+              {
+                id: "tw-css-variables",
+                title: "@theme / CSS変数統合",
+                subtitle: "Tailwind v4テーマ",
+                description: "Tailwind v4では@theme inlineブロックでCSS変数をTailwindトークンとして登録。shadcn/uiのvar()変数と直接統合できる。デザイントークンの一元管理が可能。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">@theme</span> inline {<br>\n  <span style="color:#6c7086;">/* CSS変数をTailwindトークンに */</span><br>\n  --color-primary: var(--primary);<br>\n  --spacing-phi-md: 1rem;<br>\n  --font-size-body: 1rem;<br>\n}<br><br>\n<span style="color:#6c7086;">/* 使用: bg-primary, p-phi-md */</span><br>\n&lt;<span style="color:#89b4fa;">div</span> className=<span style="color:#a6e3a1;">"bg-primary p-phi-md"</span>&gt;<br>\n  Tailwindトークンとして使用<br>\n&lt;/<span style="color:#89b4fa;">div</span>&gt;\n</div>',
+                },
+                tags: ["@theme", "CSS変数", "デザイントークン", "v4"],
+              },
+              {
+                id: "tw-layer-utilities",
+                title: "@layer utilities / components",
+                subtitle: "カスタムユーティリティ",
+                description: "@layer utilitiesでカスタムユーティリティクラスを定義。@layer componentsで再利用可能なコンポーネントスタイルを定義。Tailwindのpurge/treeshakingの対象になる。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">@layer</span> utilities {<br>\n  .shadow-neumorphic {<br>\n    box-shadow:<br>\n      8px 8px 16px rgba(0,0,0,0.06),<br>\n      -8px -8px 16px rgba(255,255,255,0.8);<br>\n  }<br>\n  .glass {<br>\n    background: rgba(255,255,255,0.6);<br>\n    backdrop-filter: blur(12px);<br>\n  }<br>\n}<br><br>\n<span style="color:#6c7086;">/* HTMLで普通のクラスとして使える */</span><br>\n&lt;<span style="color:#89b4fa;">div</span> className=<span style="color:#a6e3a1;">"shadow-neumorphic glass"</span>&gt;\n</div>',
+                },
+                tags: ["@layer", "utilities", "components", "カスタムクラス"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "shadcn-ui",
+    name: "shadcn/ui",
+    description: "コピー&ペーストで使えるReactコンポーネント集",
+    longDescription:
+      "shadcn/ui は Radix UI をベースとした、アクセシブルでカスタマイズ可能なUIコンポーネント集です。npmパッケージではなく、プロジェクトにコードを直接コピーして使う方式で、完全な制御が可能です。",
+    icon: "Component",
+    color: "oklch(0.45 0.05 0)",
+    officialUrl: "https://ui.shadcn.com",
+    levels: [
+      {
+        level: "beginner",
+        label: "初級",
+        description: "shadcn/uiの基本的なコンポーネントの使い方を学びます。",
+        sections: [
+          {
+            id: "shadcn-b-setup",
+            title: "セットアップ・基本",
+            description: "インストールと基本コンポーネント",
+            topics: [
+              {
+                id: "shadcn-install",
+                title: "npx shadcn@latest init / add",
+                subtitle: "インストール",
+                description: "shadcn/uiはnpmパッケージではなく、CLIでコンポーネントのソースコードをプロジェクトにコピーする。init でプロジェクト設定、add で個別コンポーネントを追加。コードが手元にあるため自由にカスタマイズ可能。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;"># 1. プロジェクト初期化</span><br>\n$ npx shadcn@latest init<br><br>\n<span style="color:#6c7086;"># 2. コンポーネントを追加</span><br>\n$ npx shadcn@latest add button<br>\n$ npx shadcn@latest add card badge tabs<br><br>\n<span style="color:#6c7086;"># → src/components/ui/ にコード生成</span><br>\nsrc/components/ui/button.tsx<br>\nsrc/components/ui/card.tsx<br>\nsrc/components/ui/badge.tsx<br>\nsrc/components/ui/tabs.tsx<br><br>\n<span style="color:#a6e3a1;">// コードが手元にあるので自由に編集可能！</span>\n</div>',
+                },
+                tags: ["init", "add", "CLI", "コンポーネント追加"],
+              },
+              {
+                id: "shadcn-button",
+                title: "<Button>",
+                subtitle: "ボタンコンポーネント",
+                description: "variant prop で見た目を変更: default, destructive, outline, secondary, ghost, link。size prop でサイズ: default, sm, lg, icon。asChild で別の要素として描画可能。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> { Button } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@/components/ui/button"</span>;<br><br>\n&lt;<span style="color:#a6e3a1;">Button</span>&gt;Default&lt;/<span style="color:#a6e3a1;">Button</span>&gt;<br>\n&lt;<span style="color:#a6e3a1;">Button</span> variant=<span style="color:#a6e3a1;">"outline"</span>&gt;Outline&lt;/<span style="color:#a6e3a1;">Button</span>&gt;<br>\n&lt;<span style="color:#a6e3a1;">Button</span> variant=<span style="color:#a6e3a1;">"destructive"</span>&gt;Delete&lt;/<span style="color:#a6e3a1;">Button</span>&gt;<br>\n&lt;<span style="color:#a6e3a1;">Button</span> variant=<span style="color:#a6e3a1;">"ghost"</span> size=<span style="color:#a6e3a1;">"sm"</span>&gt;Small Ghost&lt;/<span style="color:#a6e3a1;">Button</span>&gt;<br>\n&lt;<span style="color:#a6e3a1;">Button</span> variant=<span style="color:#a6e3a1;">"link"</span>&gt;Link Style&lt;/<span style="color:#a6e3a1;">Button</span>&gt;<br><br>\n<span style="color:#6c7086;">// asChild: Link等として描画</span><br>\n&lt;<span style="color:#a6e3a1;">Button</span> asChild&gt;<br>\n  &lt;<span style="color:#89b4fa;">a</span> href="/about"&gt;About&lt;/<span style="color:#89b4fa;">a</span>&gt;<br>\n&lt;/<span style="color:#a6e3a1;">Button</span>&gt;\n</div>',
+                },
+                tags: ["Button", "variant", "size", "asChild"],
+              },
+              {
+                id: "shadcn-card",
+                title: "<Card>",
+                subtitle: "カードコンポーネント",
+                description: "Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter の組み合わせで構成。構造的なコンテンツの表示に最適。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> {<br>\n  Card, CardHeader, CardTitle,<br>\n  CardDescription, CardContent, CardFooter<br>\n} <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@/components/ui/card"</span>;<br><br>\n&lt;<span style="color:#a6e3a1;">Card</span>&gt;<br>\n  &lt;<span style="color:#a6e3a1;">CardHeader</span>&gt;<br>\n    &lt;<span style="color:#a6e3a1;">CardTitle</span>&gt;タイトル&lt;/<span style="color:#a6e3a1;">CardTitle</span>&gt;<br>\n    &lt;<span style="color:#a6e3a1;">CardDescription</span>&gt;説明文&lt;/<span style="color:#a6e3a1;">CardDescription</span>&gt;<br>\n  &lt;/<span style="color:#a6e3a1;">CardHeader</span>&gt;<br>\n  &lt;<span style="color:#a6e3a1;">CardContent</span>&gt;<br>\n    &lt;<span style="color:#89b4fa;">p</span>&gt;コンテンツ&lt;/<span style="color:#89b4fa;">p</span>&gt;<br>\n  &lt;/<span style="color:#a6e3a1;">CardContent</span>&gt;<br>\n  &lt;<span style="color:#a6e3a1;">CardFooter</span>&gt;<br>\n    &lt;<span style="color:#a6e3a1;">Button</span>&gt;アクション&lt;/<span style="color:#a6e3a1;">Button</span>&gt;<br>\n  &lt;/<span style="color:#a6e3a1;">CardFooter</span>&gt;<br>\n&lt;/<span style="color:#a6e3a1;">Card</span>&gt;\n</div>',
+                },
+                tags: ["Card", "CardHeader", "CardContent", "CardFooter"],
+              },
+            ],
+          },
+          {
+            id: "shadcn-b-form",
+            title: "フォームコンポーネント",
+            description: "入力関連のコンポーネント",
+            topics: [
+              {
+                id: "shadcn-badge-tabs",
+                title: "<Badge> / <Tabs>",
+                subtitle: "バッジ・タブ切替",
+                description: "Badgeはステータスやカテゴリの表示に使う小さなラベル。Tabsは複数パネルのタブ切替UI。TabsList, TabsTrigger, TabsContentで構成。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> { Badge } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@/components/ui/badge"</span>;<br>\n<span style="color:#cba6f7;">import</span> { Tabs, TabsList, TabsTrigger, TabsContent }<br>\n  <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@/components/ui/tabs"</span>;<br><br>\n&lt;<span style="color:#a6e3a1;">Badge</span>&gt;Default&lt;/<span style="color:#a6e3a1;">Badge</span>&gt;<br>\n&lt;<span style="color:#a6e3a1;">Badge</span> variant=<span style="color:#a6e3a1;">"secondary"</span>&gt;Secondary&lt;/<span style="color:#a6e3a1;">Badge</span>&gt;<br><br>\n&lt;<span style="color:#a6e3a1;">Tabs</span> defaultValue=<span style="color:#a6e3a1;">"tab1"</span>&gt;<br>\n  &lt;<span style="color:#a6e3a1;">TabsList</span>&gt;<br>\n    &lt;<span style="color:#a6e3a1;">TabsTrigger</span> value=<span style="color:#a6e3a1;">"tab1"</span>&gt;タブ1&lt;/<span style="color:#a6e3a1;">TabsTrigger</span>&gt;<br>\n    &lt;<span style="color:#a6e3a1;">TabsTrigger</span> value=<span style="color:#a6e3a1;">"tab2"</span>&gt;タブ2&lt;/<span style="color:#a6e3a1;">TabsTrigger</span>&gt;<br>\n  &lt;/<span style="color:#a6e3a1;">TabsList</span>&gt;<br>\n  &lt;<span style="color:#a6e3a1;">TabsContent</span> value=<span style="color:#a6e3a1;">"tab1"</span>&gt;内容1&lt;/<span style="color:#a6e3a1;">TabsContent</span>&gt;<br>\n  &lt;<span style="color:#a6e3a1;">TabsContent</span> value=<span style="color:#a6e3a1;">"tab2"</span>&gt;内容2&lt;/<span style="color:#a6e3a1;">TabsContent</span>&gt;<br>\n&lt;/<span style="color:#a6e3a1;">Tabs</span>&gt;\n</div>',
+                },
+                tags: ["Badge", "Tabs", "TabsList", "TabsTrigger"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "intermediate",
+        label: "中級",
+        description: "テーマカスタマイズとコンポーネントの拡張を学びます。",
+        sections: [
+          {
+            id: "shadcn-i-theme",
+            title: "テーマ・CSS変数",
+            description: "shadcn/uiのカラーシステム",
+            topics: [
+              {
+                id: "shadcn-css-vars",
+                title: "CSS変数によるテーマ",
+                subtitle: "カラーカスタマイズ",
+                description: "shadcn/uiは :root のCSS変数でテーマカラーを管理。--primary, --secondary, --muted, --accent, --destructive等。oklch形式で定義し、.darkクラスでダークモード切替。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#89b4fa;">:root</span> {<br>\n  --background: oklch(0.985 0.003 174);<br>\n  --foreground: oklch(0.15 0.01 174);<br>\n  --primary: oklch(0.45 0.12 174);<br>\n  --primary-foreground: oklch(0.985 0.005 174);<br>\n  --secondary: oklch(0.95 0.015 174);<br>\n  --muted: oklch(0.96 0.008 174);<br>\n  --accent: oklch(0.55 0.12 174);<br>\n  --destructive: oklch(0.577 0.245 27);<br>\n  --border: oklch(0.90 0.005 174);<br>\n  --ring: oklch(0.45 0.12 174);<br>\n}<br><br>\n<span style="color:#6c7086;">/* Tailwindクラスで使用 */</span><br>\nbg-primary text-primary-foreground<br>\nbg-muted text-muted-foreground\n</div>',
+                },
+                tags: ["CSS変数", "--primary", "--secondary", "oklch", "テーマ"],
+              },
+              {
+                id: "shadcn-cva",
+                title: "cva (Class Variance Authority)",
+                subtitle: "バリアントパターン",
+                description: "cvaはコンポーネントのスタイルバリアントを型安全に定義するユーティリティ。shadcn/uiの全コンポーネントがこのパターンで構築されている。variant と size の組み合わせで多彩なスタイルを実現。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#cba6f7;">import</span> { cva } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"class-variance-authority"</span>;<br><br>\n<span style="color:#cba6f7;">const</span> buttonVariants = cva(<br>\n  <span style="color:#a6e3a1;">"rounded-md font-medium transition-colors"</span>,<br>\n  {<br>\n    variants: {<br>\n      variant: {<br>\n        default: <span style="color:#a6e3a1;">"bg-primary text-primary-foreground"</span>,<br>\n        outline: <span style="color:#a6e3a1;">"border border-input bg-background"</span>,<br>\n        ghost: <span style="color:#a6e3a1;">"hover:bg-accent"</span>,<br>\n      },<br>\n      size: {<br>\n        default: <span style="color:#a6e3a1;">"h-10 px-4 py-2"</span>,<br>\n        sm: <span style="color:#a6e3a1;">"h-9 px-3"</span>,<br>\n        lg: <span style="color:#a6e3a1;">"h-11 px-8"</span>,<br>\n      },<br>\n    },<br>\n    defaultVariants: {<br>\n      variant: <span style="color:#a6e3a1;">"default"</span>,<br>\n      size: <span style="color:#a6e3a1;">"default"</span>,<br>\n    },<br>\n  }<br>\n);\n</div>',
+                },
+                tags: ["cva", "variants", "class-variance-authority", "型安全"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        level: "advanced",
+        label: "上級",
+        description: "カスタムコンポーネント作成とRadix UIの活用を学びます。",
+        sections: [
+          {
+            id: "shadcn-a-custom",
+            title: "カスタムコンポーネント",
+            description: "shadcn/uiパターンでの独自コンポーネント構築",
+            topics: [
+              {
+                id: "shadcn-radix",
+                title: "Radix UI プリミティブ",
+                subtitle: "ヘッドレスUIベース",
+                description: "shadcn/uiはRadix UIのヘッドレスコンポーネント（スタイルなし・機能のみ）の上にTailwindでスタイルを被せている。Dialog, Popover, Select等の複雑なUIがアクセシビリティ対応済みで使える。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// Radix UIの構造</span><br>\n<span style="color:#cba6f7;">import</span> * as DialogPrimitive<br>\n  <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@radix-ui/react-dialog"</span>;<br><br>\n<span style="color:#6c7086;">// shadcn/uiがTailwindスタイルを追加</span><br>\n<span style="color:#cba6f7;">const</span> DialogContent = React.forwardRef(<br>\n  ({ className, ...props }, ref) =&gt; (<br>\n    &lt;<span style="color:#a6e3a1;">DialogPrimitive.Content</span><br>\n      ref={ref}<br>\n      className={cn(<br>\n        <span style="color:#a6e3a1;">"fixed left-1/2 top-1/2"</span>,<br>\n        <span style="color:#a6e3a1;">"-translate-x-1/2 -translate-y-1/2"</span>,<br>\n        <span style="color:#a6e3a1;">"bg-background rounded-lg shadow-lg"</span>,<br>\n        <span style="color:#a6e3a1;">"p-6"</span>,<br>\n        className<br>\n      )}<br>\n      {...props}<br>\n    /&gt;<br>\n  )<br>\n);\n</div>',
+                },
+                tags: ["Radix UI", "ヘッドレス", "Dialog", "アクセシビリティ"],
+              },
+              {
+                id: "shadcn-extend",
+                title: "コンポーネントの拡張パターン",
+                subtitle: "プロジェクト固有のカスタマイズ",
+                description: "shadcn/uiコンポーネントはプロジェクト内にソースがあるため、直接編集してカスタマイズ可能。既存コンポーネントをラップして新しいバリアントを追加するパターンが実用的。",
+                code: {
+                  html: '<div style="background:#1e1e2e;color:#cdd6f4;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;line-height:1.8;">\n<span style="color:#6c7086;">// 既存Buttonを拡張した IconButton</span><br>\n<span style="color:#cba6f7;">import</span> { Button, <span style="color:#cba6f7;">type</span> ButtonProps }<br>\n  <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@/components/ui/button"</span>;<br>\n<span style="color:#cba6f7;">import</span> { cn } <span style="color:#cba6f7;">from</span> <span style="color:#a6e3a1;">"@/lib/utils"</span>;<br><br>\n<span style="color:#cba6f7;">type</span> IconButtonProps = ButtonProps &amp; {<br>\n  icon: React.ReactNode;<br>\n  label: <span style="color:#a6e3a1;">string</span>;<br>\n};<br><br>\n<span style="color:#cba6f7;">export function</span> <span style="color:#89b4fa;">IconButton</span>(<br>\n  { icon, label, className, ...props }: IconButtonProps<br>\n) {<br>\n  <span style="color:#cba6f7;">return</span> (<br>\n    &lt;<span style="color:#a6e3a1;">Button</span><br>\n      aria-label={label}<br>\n      className={cn(<span style="color:#a6e3a1;">"gap-2"</span>, className)}<br>\n      {...props}<br>\n    &gt;<br>\n      {icon}<br>\n      {label}<br>\n    &lt;/<span style="color:#a6e3a1;">Button</span>&gt;<br>\n  );<br>\n}\n</div>',
+                },
+                tags: ["拡張", "ラッパー", "カスタムバリアント", "型継承"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];

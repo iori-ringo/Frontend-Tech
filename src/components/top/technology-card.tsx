@@ -1,11 +1,14 @@
 import Link from "next/link";
-import { FileCode2, Palette } from "lucide-react";
+import { FileCode2, Palette, Atom, Wind, Component } from "lucide-react";
 
 import type { Technology } from "@/types/technology";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FileCode2,
   Palette,
+  Atom,
+  Wind,
+  Component,
 };
 
 type TechnologyCardProps = {
