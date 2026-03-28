@@ -1,0 +1,379 @@
+{
+  "_meta": {
+    "description": "\u03c6 Color System reference values. H=0 means 'substitute brand hue at generation time'.",
+    "phi": 1.618033988749895,
+    "accent_base_L": 0.45,
+    "neutral_base_L": 0.55,
+    "destructive_hue": 25,
+    "chroma_derivation": {
+      "primary": "C\u2080",
+      "secondary": "C\u2080 / \u03c6",
+      "neutral": "C\u2080 / \u03c6\u00b3"
+    }
+  },
+  "tonal_palettes": {
+    "accent_L045": {
+      "+1": {
+        "L": 0.6601,
+        "C_multiplier": 0.7862
+      },
+      "+2": {
+        "L": 0.7899,
+        "C_multiplier": 0.618
+      },
+      "+3": {
+        "L": 0.8702,
+        "C_multiplier": 0.4859
+      },
+      "+4": {
+        "L": 0.9198,
+        "C_multiplier": 0.382
+      },
+      "+5": {
+        "L": 0.9504,
+        "C_multiplier": 0.3003
+      },
+      "0": {
+        "L": 0.45,
+        "C_multiplier": 1.0
+      },
+      "-1": {
+        "L": 0.2781,
+        "C_multiplier": 0.7862
+      },
+      "-2": {
+        "L": 0.1719,
+        "C_multiplier": 0.618
+      },
+      "-3": {
+        "L": 0.1062,
+        "C_multiplier": 0.4859
+      },
+      "-4": {
+        "L": 0.0657,
+        "C_multiplier": 0.382
+      },
+      "-5": {
+        "L": 0.0406,
+        "C_multiplier": 0.3003
+      }
+    },
+    "neutral_L055": {
+      "+1": {
+        "L": 0.7219,
+        "C_multiplier": 0.7862
+      },
+      "+2": {
+        "L": 0.8281,
+        "C_multiplier": 0.618
+      },
+      "+3": {
+        "L": 0.8938,
+        "C_multiplier": 0.4859
+      },
+      "+4": {
+        "L": 0.9343,
+        "C_multiplier": 0.382
+      },
+      "+5": {
+        "L": 0.9594,
+        "C_multiplier": 0.3003
+      },
+      "0": {
+        "L": 0.55,
+        "C_multiplier": 1.0
+      },
+      "-1": {
+        "L": 0.3399,
+        "C_multiplier": 0.7862
+      },
+      "-2": {
+        "L": 0.2101,
+        "C_multiplier": 0.618
+      },
+      "-3": {
+        "L": 0.1298,
+        "C_multiplier": 0.4859
+      },
+      "-4": {
+        "L": 0.0802,
+        "C_multiplier": 0.382
+      },
+      "-5": {
+        "L": 0.0496,
+        "C_multiplier": 0.3003
+      }
+    }
+  },
+  "role_mapping": {
+    "light": {
+      "background": {
+        "palette": "neutral",
+        "step": "fixed",
+        "L": 0.995
+      },
+      "foreground": {
+        "palette": "neutral",
+        "step": "-3"
+      },
+      "card": {
+        "palette": "neutral",
+        "step": "fixed",
+        "L": 0.99
+      },
+      "card-foreground": {
+        "palette": "neutral",
+        "step": "-3"
+      },
+      "popover": {
+        "palette": "neutral",
+        "step": "fixed",
+        "L": 0.99
+      },
+      "popover-foreground": {
+        "palette": "neutral",
+        "step": "-3"
+      },
+      "primary": {
+        "palette": "primary",
+        "step": "0"
+      },
+      "primary-foreground": {
+        "palette": "primary",
+        "step": "+5"
+      },
+      "secondary": {
+        "palette": "secondary",
+        "step": "+3"
+      },
+      "secondary-foreground": {
+        "palette": "secondary",
+        "step": "-1"
+      },
+      "muted": {
+        "palette": "neutral",
+        "step": "+3"
+      },
+      "muted-foreground": {
+        "palette": "neutral",
+        "step": "-1"
+      },
+      "accent": {
+        "palette": "secondary",
+        "step": "+3"
+      },
+      "accent-foreground": {
+        "palette": "secondary",
+        "step": "-1"
+      },
+      "destructive": {
+        "palette": "destructive",
+        "step": "0"
+      },
+      "destructive-foreground": {
+        "palette": "destructive",
+        "step": "+5"
+      },
+      "border": {
+        "palette": "neutral",
+        "step": "+2"
+      },
+      "input": {
+        "palette": "neutral",
+        "step": "+2"
+      },
+      "ring": {
+        "palette": "primary",
+        "step": "0"
+      },
+      "chart-1": {
+        "palette": "primary",
+        "step": "0"
+      },
+      "chart-2": {
+        "palette": "secondary",
+        "step": "0"
+      },
+      "chart-3": {
+        "palette": "primary",
+        "step": "-1"
+      },
+      "chart-4": {
+        "palette": "secondary",
+        "step": "+1"
+      },
+      "chart-5": {
+        "palette": "destructive",
+        "step": "0"
+      },
+      "sidebar-background": {
+        "palette": "neutral",
+        "step": "+4"
+      },
+      "sidebar-foreground": {
+        "palette": "neutral",
+        "step": "-2"
+      },
+      "sidebar-primary": {
+        "palette": "primary",
+        "step": "0"
+      },
+      "sidebar-primary-foreground": {
+        "palette": "primary",
+        "step": "+5"
+      },
+      "sidebar-accent": {
+        "palette": "secondary",
+        "step": "+3"
+      },
+      "sidebar-accent-foreground": {
+        "palette": "secondary",
+        "step": "-1"
+      },
+      "sidebar-border": {
+        "palette": "neutral",
+        "step": "+2"
+      },
+      "sidebar-ring": {
+        "palette": "primary",
+        "step": "0"
+      }
+    },
+    "dark": {
+      "background": {
+        "palette": "neutral",
+        "step": "-4"
+      },
+      "foreground": {
+        "palette": "neutral",
+        "step": "+3"
+      },
+      "card": {
+        "palette": "neutral",
+        "step": "-3"
+      },
+      "card-foreground": {
+        "palette": "neutral",
+        "step": "+3"
+      },
+      "popover": {
+        "palette": "neutral",
+        "step": "-3"
+      },
+      "popover-foreground": {
+        "palette": "neutral",
+        "step": "+3"
+      },
+      "primary": {
+        "palette": "primary",
+        "step": "+2"
+      },
+      "primary-foreground": {
+        "palette": "primary",
+        "step": "-2"
+      },
+      "secondary": {
+        "palette": "secondary",
+        "step": "-2"
+      },
+      "secondary-foreground": {
+        "palette": "secondary",
+        "step": "+3"
+      },
+      "muted": {
+        "palette": "neutral",
+        "step": "-2"
+      },
+      "muted-foreground": {
+        "palette": "neutral",
+        "step": "+1"
+      },
+      "accent": {
+        "palette": "secondary",
+        "step": "-2"
+      },
+      "accent-foreground": {
+        "palette": "secondary",
+        "step": "+3"
+      },
+      "destructive": {
+        "palette": "destructive",
+        "step": "+1"
+      },
+      "destructive-foreground": {
+        "palette": "destructive",
+        "step": "-2"
+      },
+      "border": {
+        "palette": "neutral",
+        "step": "-1"
+      },
+      "input": {
+        "palette": "neutral",
+        "step": "-1"
+      },
+      "ring": {
+        "palette": "primary",
+        "step": "+2"
+      },
+      "chart-1": {
+        "palette": "primary",
+        "step": "+2"
+      },
+      "chart-2": {
+        "palette": "secondary",
+        "step": "+1"
+      },
+      "chart-3": {
+        "palette": "primary",
+        "step": "+1"
+      },
+      "chart-4": {
+        "palette": "secondary",
+        "step": "+2"
+      },
+      "chart-5": {
+        "palette": "destructive",
+        "step": "+1"
+      },
+      "sidebar-background": {
+        "palette": "neutral",
+        "step": "-4"
+      },
+      "sidebar-foreground": {
+        "palette": "neutral",
+        "step": "+3"
+      },
+      "sidebar-primary": {
+        "palette": "primary",
+        "step": "+2"
+      },
+      "sidebar-primary-foreground": {
+        "palette": "primary",
+        "step": "-2"
+      },
+      "sidebar-accent": {
+        "palette": "secondary",
+        "step": "-2"
+      },
+      "sidebar-accent-foreground": {
+        "palette": "secondary",
+        "step": "+3"
+      },
+      "sidebar-border": {
+        "palette": "neutral",
+        "step": "-1"
+      },
+      "sidebar-ring": {
+        "palette": "primary",
+        "step": "+2"
+      }
+    }
+  },
+  "semantic_hues": {
+    "destructive": 25,
+    "warning": 85,
+    "success": 155,
+    "info": "brand_hue"
+  }
+}

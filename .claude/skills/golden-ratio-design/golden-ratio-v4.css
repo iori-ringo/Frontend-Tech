@@ -1,0 +1,85 @@
+/*
+ * Golden Ratio Design System — Tailwind v4 CSS Preset
+ *
+ * Usage:
+ *   @import "./.claude/skills/golden-ratio-design/golden-ratio-v4.css";
+ *
+ *   Place this import AFTER Tailwind's base import:
+ *     @import "tailwindcss";
+ *     @import "./.claude/skills/golden-ratio-design/golden-ratio-v4.css";
+ *
+ * This extends (not replaces) the default Tailwind theme.
+ * All standard utilities (p-4, text-lg, etc.) remain available.
+ */
+
+/* ─── Constants ─── */
+:root {
+  --phi: 1.618;
+  --phi-half: 1.272;       /* √φ  */
+  --phi-quarter: 1.128;    /* ⁴√φ */
+  --phi-eighth: 1.062;     /* ⁸√φ */
+}
+
+/* ─── Spacing, Font Size, Line Height, Border Radius ─── */
+@theme {
+  /* Spacing (padding, margin, gap, width, height) — φ^n scale */
+  --spacing-phi-3xs: 0.236rem;   /* φ⁻³  ≈  3.78px */
+  --spacing-phi-2xs: 0.382rem;   /* φ⁻²  ≈  6.11px */
+  --spacing-phi-sm:  0.618rem;   /* φ⁻¹  ≈  9.89px */
+  --spacing-phi-md:  1.000rem;   /* φ⁰   = 16.00px */
+  --spacing-phi-lg:  1.618rem;   /* φ¹   ≈ 25.89px */
+  --spacing-phi-xl:  2.618rem;   /* φ²   ≈ 41.89px */
+  --spacing-phi-2xl: 4.236rem;   /* φ³   ≈ 67.77px */
+  --spacing-phi-3xl: 6.854rem;   /* φ⁴   ≈109.66px */
+  --spacing-phi-4xl: 11.089rem;  /* φ⁵   ≈177.42px */
+
+  /* Font Size */
+  --font-size-display1:   4.236rem;   /* φ³           */
+  --font-size-display2:   2.618rem;   /* φ²           */
+  --font-size-title1:     2.058rem;   /* φ × √φ       */
+  --font-size-title2:     1.618rem;   /* φ             */
+  --font-size-title3:     1.272rem;   /* √φ            */
+  --font-size-heading:    1.128rem;   /* ⁴√φ           */
+  --font-size-body:       1.000rem;   /* 1              */
+  --font-size-callout:    0.942rem;   /* 1 / ⁸√φ       */
+  --font-size-subheading: 0.887rem;   /* 1 / ⁴√φ       */
+  --font-size-label:      0.835rem;   /* 1 / (⁴√φ×⁸√φ) */
+  --font-size-caption:    0.786rem;   /* 1 / √φ        */
+
+  /* Line Height */
+  --line-height-phi:         1.618;
+  --line-height-phi-half:    1.272;
+  --line-height-phi-quarter: 1.128;
+  --line-height-phi-tight:   1.062;
+
+  /* Border Radius */
+  --radius-phi-3xs: 0.236rem;
+  --radius-phi-2xs: 0.382rem;
+  --radius-phi-sm:  0.618rem;
+  --radius-phi-md:  1.000rem;
+  --radius-phi-lg:  1.618rem;
+  --radius-phi-xl:  2.618rem;
+
+  /* Max Width — readable line length */
+  --max-width-phi-prose: 38.2em;  /* ≈ 610px at 16px base ≈ 65 chars */
+
+  /* Animation Duration — φ^n × 100ms */
+  --duration-phi-xs:  62ms;    /* φ⁻² × 100 */
+  --duration-phi-sm:  100ms;   /* φ⁰  × 100  — perception threshold */
+  --duration-phi-md:  162ms;   /* φ¹  × 100  — micro-interactions */
+  --duration-phi-lg:  262ms;   /* φ²  × 100  — standard transitions */
+  --duration-phi-xl:  424ms;   /* φ³  × 100  — emphasis animations */
+  --duration-phi-2xl: 685ms;   /* φ⁴  × 100  — page transitions */
+
+  /* Easing — custom cubic-bezier based on φ */
+  --ease-phi-out:    cubic-bezier(0.236, 0.618, 0.382, 1);
+  --ease-phi-in:     cubic-bezier(0.618, 0, 0.764, 0.382);
+  --ease-phi-in-out: cubic-bezier(0.618, 0, 0.382, 1);
+}
+
+/* ─── Default font-size + line-height pairings as utilities ─── */
+/* Tailwind v4 auto-generates text-{name} from --font-size-{name},
+   but line-height pairings need explicit @utility or @layer if you
+   want text-display1 to automatically apply leading-phi-quarter.
+   For now, pair them manually in your components or create a
+   @utility layer in your project. */

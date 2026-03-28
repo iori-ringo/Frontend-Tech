@@ -1,0 +1,52 @@
+{
+	"_comment": [
+		"==========================================================================",
+		"React Doctor Stop Hook — settings.json テンプレート",
+		"==========================================================================",
+		"",
+		"概要:",
+		"  Claude Code の Stop hook として React Doctor を実行する設定。",
+		"  応答完了後に自動でヘルスチェックが走り、スコアが閾値未満なら",
+		"  block を返して修正を促す。",
+		"",
+		"導入手順:",
+		"  1. .claude/hooks/react-doctor-check.sh をプロジェクトにコピー",
+		"     cp /path/to/ClaudeCodeSetting/.claude/hooks/react-doctor-check.sh \\",
+		"        <project>/.claude/hooks/",
+		"  2. 実行権限を付与",
+		"     chmod +x <project>/.claude/hooks/react-doctor-check.sh",
+		"  3. プロジェクトの .claude/settings.json を開き、下記の hooks.Stop を追加",
+		"     既存の Stop hook がある場合は hooks 配列に追記する",
+		"  4. （任意）.github/workflows/react-doctor.yml もコピーしてCI連携",
+		"",
+		"設定値の説明:",
+		"  - matcher: '' → 全てのStop イベントで発火（特定パターンに限定も可能）",
+		"  - timeout: 120 → 実行タイムアウト秒数（react-doctor の実行時間に応じて調整）",
+		"  - statusMessage: ユーザーに表示されるステータスメッセージ",
+		"  - command: hookスクリプトのパス（$CLAUDE_PROJECT_DIR はプロジェクトルートに展開）",
+		"",
+		"閾値:",
+		"  - Claude Code Hook: 75未満で block（hookスクリプト内の THRESHOLD で変更可能）",
+		"  - GitHub Actions:   50未満で fail（ワークフロー内で変更可能）",
+		"",
+		"既存hookとの併用例:",
+		"  hooks.Stop[0].hooks 配列に複数エントリを追加すれば並列実行される",
+		"  例: [react-doctor-check.sh, npx tsc --noEmit, npx eslint .]",
+		"=========================================================================="
+	],
+	"hooks": {
+		"Stop": [
+			{
+				"matcher": "",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/react-doctor-check.sh",
+						"timeout": 120,
+						"statusMessage": "React Doctor でヘルスチェック中..."
+					}
+				]
+			}
+		]
+	}
+}
